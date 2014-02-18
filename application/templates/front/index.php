@@ -16,7 +16,7 @@
 <![endif]-->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-<title><?php echo $title; ?></title>
+<title>.::<?php echo $title; ?>::.</title>
 <link href='<?php echo base_url(); ?>themes/front/css/reset.css' rel='stylesheet' type='text/css'>
 <link href="<?php echo base_url(); ?>themes/front/css/style.css" rel="stylesheet" type="text/css">
 <link href="<?php echo base_url(); ?>themes/front/css/fonts.css" rel="stylesheet" type="text/css">
