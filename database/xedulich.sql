@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `chitietxe` (
   `IDLoaixe` int(5) NOT NULL,
   `IDHangxe` int(5) NOT NULL,
   PRIMARY KEY (`IDchitietxe`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `chitietxe`
