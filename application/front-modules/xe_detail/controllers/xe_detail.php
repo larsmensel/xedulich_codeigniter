@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home extends MX_Controller {
+class Xe_detail extends MX_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -25,29 +25,19 @@ class Home extends MX_Controller {
     }
 	public function index()
 	{
-            /*$this->load->module('header');
-			$data['header'] = $this->header->index();
-            $this->template->build('home',$data);*/
-			$data['title'] = 'Cho Thuê Xe Du Lịch';
-			
-			
-			$this->load->model("model_home");
-			$loaixe = $this->model_home->get_loaithue();
-			$object = array();
-			foreach($loaixe as $key=>$value){
-				$object[] = array(
-					'IDThue'=>$value['IDThue'],
-					'TenThue'=>$value['TenThue'],
-					'sub'=>$this->model_home->chitietxe_thue($value['IDThue'])
-				);			
-			}
-			
-			$data['object'] = $object;
-			
-			$this->template->build('home',$data);
+		//show_404();	
+        if ($this->uri->segment(2) === FALSE){show_404();$product_id = 0;}
+		else{$product_id = $this->uri->segment(2);}
+		//echo $product_id;exit;
+		
+	    $data['title'] = 'Cho Thuê Xe Du Lịch';
+		$this->load->model('model_detail');
+        $data["results"] = $this->model_detail->get_chitietxe($product_id);
+		//var_dump($data);exit();
+		$this->template->build('xe_detail',$data);
             
 	}
-
+ 
 }
 
 /* End of file welcome.php */
