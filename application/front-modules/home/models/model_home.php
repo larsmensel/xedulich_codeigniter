@@ -43,34 +43,29 @@ class Model_home extends CI_Model{
 		return  $query->result_array(); 
   }
   
-  /* the loai thue xe */
-  public function get_id_loaichothue($id){ 
-   		     
-		$query = $this->db->get_where('loaichothue', array('IDThue' => $id));
-		//result_object
-		return  $query->result_array(); 
-  }  
-  
-  public function chitietxe_thue_all($id){ 
-   		
-    	//$this->db->select('l.IDThue,l.TenThue,lx.IDThue,lx.IDXe,cx.IDchitietxe, cx.TenXe, cx.NamSx, cx.Bienso, cx.Mota, cx.IDLoaixe,cx. IDHangxe');       
-		$this->db->select('*');        		
-		$this->db->join('chitietxe', 'chitietxe.IDchitietxe=loaithue_ctxe.IDXe');	
-		$this->db->where('loaithue_ctxe.IDThue',$id);		       
-		$query = $this->db->get('loaithue_ctxe');
-		//result_object
-		return  $query->result_array(); 
+  /* the loai thue xe & chitietxe theo loai thue xe*/
+  public function count_chitietxe_loaithue($id) {
+	  $this->db->like('IDThue', $id);
+	  $this->db->from('loaithue_ctxe');
+	  return $this->db->count_all_results();
   }
-  
-  public function record_count_loai($id) {
-/*	  	$query = $this->db->get_where('loaithue_ctxe', array('IDThue' => $id));		       
-        echo $query->num_rows();exit;*/
-		
-		$this->db->like('IDThue', $id);
-		$this->db->from('loaithue_ctxe');
-		echo $this->db->count_all_results();exit();
-  }
-  
+
+  public function fetch_chitietxe_loaithue($id,$limit, $page) {
+	  //$query = $this->db->get('mytable', 10, 20);
+	  // Produces: SELECT * FROM mytable LIMIT 20(bat dau), 10(gioi han) (in MySQL. Other databases have slightly different syntax)
+
+	  $this->db->select('*');        		
+	  $this->db->join('chitietxe', 'chitietxe.IDchitietxe=loaithue_ctxe.IDXe');	
+	  $this->db->where('loaithue_ctxe.IDThue',$id);		       
+	  $query = $this->db->get('loaithue_ctxe',$limit,$page);  
+	  if ($query->num_rows() > 0) {
+		  foreach ($query->result() as $row) {
+			  $data[] = $row;
+		  }
+		  return $data;
+	  }
+	  return false;
+ }
   /* end the loai thue xe */
   
 }

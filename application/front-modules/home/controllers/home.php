@@ -20,6 +20,7 @@ class Home extends MX_Controller {
 	 */
     public function __construct() {
         parent::__construct();
+		$this->load->helper("url");
         
     }
 	public function index()
@@ -49,71 +50,31 @@ class Home extends MX_Controller {
 	
 	public function category_xe()
 	{		
-	
-			if ($this->uri->segment(3) === FALSE)
-			{
-				$id_lchothue = 0;
-			}
-			else
-			{	
+		if ($this->uri->segment(3) === FALSE){$product_id = 0;}
+		else{$product_id = $this->uri->segment(3);}
+		
+	    $data['title'] = 'Cho Thuê Xe Du Lịch';
+		$this->load->model('model_home');
+		$this->load->library("pagination");
+		$config = array();
 				
-				$id_lchothue = $this->uri->segment(3);
-				
-				
-				/* phan trang mau
-				$config["base_url"] = base_url() . "welcome/example1";
-				$config["total_rows"] = $this->Countries->record_count();
-				$config["per_page"] = 20;
-				$config["uri_segment"] = 3;
-				$choice = $config["total_rows"] / $config["per_page"];
-				$config["num_links"] = round($choice);
-			 
-				$this->pagination->initialize($config);
-			 
-				$page = ($this->uri->segment(3))? $this->uri->segment(3) : 0;
-				$data["results"] = $this->Countries
-					->fetch_countries($config["per_page"], $page);
-				$data["links"] = $this->pagination->create_links();
-			 
-				$this->load->view("example1", $data);*/
-				$this->load->model("model_home");
-				$this->load->library("pagination");
-				$config = array();
-						
-				$config["base_url"] = base_url() . "home/category_xe";				
-				
-				$config["total_rows"] = $this->model_home->record_count_loai($id_lchothue);
-				var_dump($config["total_rows"]);exit();
-				$config["per_page"] = 6;
-				$config["uri_segment"] = 3;
-				$config["next_link"]= 'Kế tiếp';
-				$config["prev_link"]= 'Quay Lại';
-		 
-				$this->pagination->initialize($config);
-		 
-				$page = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
-				$data["results"] = $this->model_tintuc->fetch_tintuc($config["per_page"], $page);
-				$data["phantrang"] = $this->pagination->create_links();
-				
-				
-				
-				
-				$loaixe = $this->model_home->get_id_loaichothue($id_lchothue);
-				$object = array();
-				foreach($loaixe as $key=>$value){
-					$object[] = array(						
-						'IDThue'=>$value['IDThue'],
-						'TenThue'=>$value['TenThue'],
-						'sub'=>$this->model_home->chitietxe_thue($value['IDThue'])
-					);			
-				}
-				$data['title'] = $object[0]['TenThue'];
-
-			}
-			$data['object'] = $object;
-			$this->template->build('category_xe',$data);
-            var_dump($data);exit();
-	}
+		$config["base_url"] = base_url() . "home/category_xe/".$product_id."/page";
+        $config["total_rows"] = $this->model_home->count_chitietxe_loaithue($product_id);
+        $config["per_page"] = 1;
+        $config["uri_segment"] = 5;
+		$config["next_link"]= 'Tiếp theo';
+		$config["prev_link"]= 'Quay lại';
+		$config['first_link'] = 'Đầu trang';
+		$config['last_link'] = 'Cuối trang';
+ 
+        $this->pagination->initialize($config);
+ 
+        $page = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
+        $data["results"] = $this->model_home->fetch_chitietxe_loaithue($product_id,$config["per_page"], $page);
+        $data["phantrang"] = $this->pagination->create_links();
+		
+		$this->template->build('category_xe',$data);
+	  }
 	
         
 }
