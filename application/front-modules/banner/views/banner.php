@@ -1,8 +1,8 @@
 <div class="tt-menu-metro">
   <ul class="tt-menu-metro-1">
-    <li> <a class="xe-thang" href="#">Xe tháng</a></li>
-    <li> <a class="xe-dulich" href="#">Xe du lịch</a></li>
-    <li> <a class="xe-cuoi" href="#">Xe cưới</a></li>
+    <li> <a class="xe-thang" href="<?php echo base_url(); ?>xe_category/1">Xe tháng</a></li>
+    <li> <a class="xe-dulich" href="<?php echo base_url(); ?>xe_category/2">Xe du lịch</a></li>
+    <li> <a class="xe-cuoi" href="<?php echo base_url(); ?>xe_category/3">Xe cưới</a></li>
   </ul>
   <ul class="tt-menu-metro-2">
     <li> <a class="tuyen-duong" href="#">Tuyến đường</a></li>
