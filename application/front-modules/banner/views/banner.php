@@ -10,7 +10,7 @@
     <li> <a class="dat-xe" href="#">Đặt xe</a></li>
   </ul>
   <ul class="tt-menu-metro-3">
-    <li> <a class="tin-tuc" href="#">Tin tức</a></li>
+    <li> <a class="tin-tuc" href="<?php echo base_url(); ?>tintuc">Tin tức</a></li>
     <li> <a class="lien-he" href="#">Liên hệ</a></li>
     <li> <a class="y-kien" href="#">Ý kiến</a></li>
   </ul>

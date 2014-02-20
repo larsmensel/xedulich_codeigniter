@@ -42,6 +42,10 @@ $route['default_controller'] = "home";
 $route['404_override'] = '';
 $route['xe_category/(:any)'] = "xe_category/index";
 $route['xe_detail/(:any)'] = "xe_detail/index";
+$route['tintuc/page/(:any)'] = "tintuc/index";
+
+
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Right extends MX_Controller {
+class User extends MX_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,16 +20,34 @@ class Right extends MX_Controller {
 	 */
     public function __construct() {
         parent::__construct();
+		$this->load->model('model_user');
+		$this->load->helper(array('form', 'url'));
+		$this->load->library('form_validation');
+		
+		// link thu vien http://ellislab.com/codeigniter%20/user-guide/libraries/form_validation.html#validationrules
         
     }
 	public function index()
 	{
-           $this->load->model('model_right');
-		   $data["results_tinnoibat"] = $this->model_right->get_tinnoibat();
-           $this->load->view('right',$data);
+		
+		
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		
+		if ($this->form_validation->run() == FALSE)
+		{
+			
+			$this->template->build('myform',$data);
+		}
+		else
+		{
+			$this->load->view('formsuccess');
+		}
            
 	}
-        
+	
 }
 
 /* End of file welcome.php */

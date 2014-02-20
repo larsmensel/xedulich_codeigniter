@@ -17,7 +17,7 @@ class Model_detail extends CI_Model{
 	public function get_xecung_hang($idxe,$idhang) {  
 		$this->db->order_by("chitietxe.IDchitietxe", "desc");    		
 		$this->db->limit(4);
-		$this->db->not_like('chitietxe.IDchitietxe', $idxe);
+		$this->db->where_not_in('chitietxe.IDchitietxe', $idxe);
 		$this->db->join('hangxe', 'hangxe.IDHangxe=chitietxe.IDHangxe');	
 		$this->db->join('loaixe', 'loaixe.IDLoaixe=chitietxe.IDLoaixe');	
 		$query = $this->db->get_where('chitietxe', array('chitietxe.IDHangxe' => $idhang));
@@ -26,7 +26,7 @@ class Model_detail extends CI_Model{
 	public function get_xecung_loai($idxe,$idloai) {  
 		$this->db->order_by("chitietxe.IDchitietxe", "desc");    		
 		$this->db->limit(4);
-		$this->db->not_like('chitietxe.IDchitietxe', $idxe);
+		$this->db->where_not_in('chitietxe.IDchitietxe', $idxe);
 		$this->db->join('hangxe', 'hangxe.IDHangxe=chitietxe.IDHangxe');	
 		$this->db->join('loaixe', 'loaixe.IDLoaixe=chitietxe.IDLoaixe');	
 		$query = $this->db->get_where('chitietxe', array('chitietxe.IDLoaixe' => $idloai));
@@ -44,7 +44,7 @@ class Model_detail extends CI_Model{
 		$this->db->select('*');
 		$this->db->order_by("chitietxe.IDchitietxe", "desc");    		
 		$this->db->limit(4);
-		$this->db->not_like('chitietxe.IDchitietxe', $idxe);
+		$this->db->where_not_in('chitietxe.IDchitietxe', $idxe);
 		$this->db->join('chitietxe', 'chitietxe.IDchitietxe=loaithue_ctxe.IDXe');
 		$this->db->join('hangxe', 'hangxe.IDHangxe=chitietxe.IDHangxe');
 	  	$this->db->join('loaixe', 'loaixe.IDLoaixe=chitietxe.IDLoaixe');

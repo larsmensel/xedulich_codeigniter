@@ -30,7 +30,6 @@ class Home extends MX_Controller {
             $this->template->build('home',$data);*/
 			$data['title'] = 'Cho Thuê Xe Du Lịch';
 			
-			
 			$this->load->model("model_home");
 			$loaixe = $this->model_home->get_loaithue();
 			$object = array();
@@ -44,8 +43,16 @@ class Home extends MX_Controller {
 			
 			$data['object'] = $object;
 			
+			
+			/*Lấy tin tuc ngoài trang home*/
+			$this->load->module('tintuc');
+			$this->load->model("model_tintuc");
+			$data["results_tinhome"] = $this->model_tintuc->fetch_tin(4,0);
+			/*End Lấy tin tuc ngoài trang home*/
+			
 			$this->template->build('home',$data);
-            
+			
+			
 	}
 
 }

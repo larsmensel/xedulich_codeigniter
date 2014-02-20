@@ -24,10 +24,7 @@ class Banner extends MX_Controller {
     }
 	public function index()
 	{
-            
-           $this->load->view('banner');
-           
-           
+           $this->load->view('banner');     
 	}
         
 }
