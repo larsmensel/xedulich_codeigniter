@@ -11,11 +11,17 @@ class Model_user extends CI_Model{
 		  'password'=>md5($this->input->post('password'))
 		);
 		$this->db->insert('user',$data);
+		$newdata = array(
+			'user_name'		=>$this->input->post('user_name'),
+			'user_email'	=>$this->input->post('email_address'),
+			'logged_in'		=> TRUE
+		);
+		$this->session->set_userdata($newdata);
 	}
 	
-	public function login($email,$password)
+	public function login($username,$password)
 	{
-		$this->db->where("email",$email);
+		$this->db->where("username",$username);
 		$this->db->where("password",$password);
 		
 		$query=$this->db->get("user");
@@ -25,10 +31,9 @@ class Model_user extends CI_Model{
 		 {
 		  //add all data to session
 		  $newdata = array(
-			'ss_user_id'  => $rows->id,
-			'ss_user_name'  => $rows->username,
-			'ss_user_email'    => $rows->email,
-			'ss_logged_in'  => TRUE,
+			'user_name'		=> $rows->username,
+			'user_email'    => $rows->email,
+			'logged_in'		=> TRUE
 		  );
 		 }
 		 $this->session->set_userdata($newdata);

@@ -9,8 +9,22 @@
       </form>
     </div>
     <ul class="tt-menu-usertop">
-      <li> <a href="#">Đăng Nhập</a> </li>
-      <li><a href="#">Đăng Ký</a> </li>
+    	<?php 
+		if(($this->session->userdata('user_name')!=""))
+		{
+		?>
+        	<li><a href="<?php echo base_url().'user/thongtin_canhan'; ?>"><?php echo 'Xin chào '.$this->session->userdata('user_name');?></a></li>
+            <li><a href="<?php echo base_url().'user/thoat'; ?>">Thoát</a></li>
+			
+		<?php
+		}
+		else{ ?>
+			<li><a href="<?php echo base_url().'user'; ?>">Đăng Nhập</a> </li>
+      		<li><a href="<?php echo base_url().'user/dangky'; ?>">Đăng Ký</a> </li>
+		<?php
+        }
+		?>
+      
     </ul>
     <div class="clear"></div>
   </div>

@@ -7,7 +7,7 @@ $this->banner->index();
 <div class="clear"></div>
 <div class="tt-main-left">
   <div class="tt-box-style">
- 	<h2 class="tt-box-style-tt">Đăng ký</h2>
+ 	<h2 class="tt-box-style-tt">Đăng nhập</h2>
     
 
 
@@ -16,11 +16,13 @@ $this->banner->index();
     
     	<?php //echo validation_errors(); ?>
     
-		<?php echo form_open('user/login'); ?>
+		<?php echo form_open('user/dangnhap'); ?>
+        
         
         <div><h5>Username</h5>
         <input type="text" name="user_name" value="<?php echo set_value('user_name'); ?>" size="50" />
         <?php echo form_error('user_name'); ?>
+        <div class="error-form"><?php echo $error_signin; ?></div>
         </div>
         
         <div><h5>Password</h5>
@@ -28,7 +30,7 @@ $this->banner->index();
         <?php echo form_error('password'); ?>
         </div>
         
-        <div><input class="tt-input-form" type="submit" value="Đăng ký" /></div>
+        <div><input class="tt-input-form" type="submit" value="Đăng nhập" /></div>
         
         <?php echo form_close(); ?>
     

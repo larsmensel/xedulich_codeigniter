@@ -22,6 +22,18 @@ $config = array(
 							'rules' => 'required|valid_email'
 						 )
 					),
+ 'signin' => array(
+					array(
+							'field' => 'user_name',
+							'label' => 'Tên đăng nhập',
+							'rules' => 'trim|min_length[4]|required|xss_clean]'
+						 ),
+					array(
+							'field' => 'password',
+							'label' => 'Mật khẩu',
+							'rules' => 'required'
+						 )
+					),					
  'email' => array(
 					array(
 							'field' => 'emailaddress',

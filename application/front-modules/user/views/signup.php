@@ -9,14 +9,11 @@ $this->banner->index();
   <div class="tt-box-style">
  	<h2 class="tt-box-style-tt">Đăng ký</h2>
     
-
-
-
 	<div class="tt-sty-form">
     
     	<?php //echo validation_errors(); ?>
     
-		<?php echo form_open('user'); ?>
+		<?php echo form_open('user/dangky'); ?>
         
         <div><h5>Username</h5>
         <input type="text" name="user_name" value="<?php echo set_value('user_name'); ?>" size="50" />

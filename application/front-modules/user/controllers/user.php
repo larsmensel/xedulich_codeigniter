@@ -35,35 +35,83 @@ class User extends MX_Controller {
         
     }
 	public function index()
-	{	$data['title']='Đăng ký';
-		
-		if($this->form_validation->run('signup') == FALSE)
+	{
+		/*$session_id = $this->session->userdata('user_name');
+		echo $session_id;*/
+		if(($this->session->userdata('user_name')!=""))
 		{
-		 	$this->template->build('signup',$data);
+			$this->thongtin_canhan();
+		}
+		else{
+			$data['title']= 'Đăng nhập';
+			$data['error_signin']= '';
+			$this->template->build('signin',$data);
+		}
+	}
+	public function thongtin_canhan()
+	{
+			$data['title']= 'Thông tin cá nhân';
+			$this->template->build('thongtin_canhan',$data);
+	}
+	public function dangnhap()
+	{
+		$data['error_signin']= '';
+		
+		$login_user_name=$this->input->post('user_name');
+		$login_password=md5($this->input->post('password'));
+		//var_dump($password);exit();
+		
+		$result=$this->model_user->login($login_user_name,$login_password);
+		
+		if($this->form_validation->run('signin') == FALSE)
+		{
+			$this->index();
 		}
 		else
 		{
-		 $this->model_user->add_user();
-		 $this->formsuccess();
+			if($result) $this->thongtin_canhan();
+			else {
+				$data['title']= 'Đăng nhập';
+				$data['error_signin']= 'Tên đăng nhập hoặc mật khẩu không đúng';
+				$this->template->build('signin',$data);
+			}
 		}
 	}
-	
-	public function login()
+	public function dangky_thanhcong()
 	{
-		$data['title']='Đăng ký thành công';
-		$email=$this->input->post('user_name');
-		$password=md5($this->input->post('password'));
-		
-		$result=$this->model_user->login($email,$password);
-		if($result) {$this->template->build('formsuccess',$data);}
-		else        {$this->template->build('signin',$data);}
+		$data['title']= 'Đăng ký thành công';
+		$this->template->build('dangky_thanhcong',$data);
 	}
-	
-	public function formsuccess()
+	public function dangky()
+	{		
+		/*$this->form_validation->set_rules('username', 'Username', 'required|min_length[3]|max_length[12]|is_unique[user.username]');
+		$this->form_validation->set_rules('password', 'Password', 'required_pass|matches[passconf]');
+		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');*/		
+		
+		
+		if($this->form_validation->run('signup') == FALSE)
+		{
+			$data['title']= 'Đăng ký';
+			$this->template->build('signup',$data);
+		}
+		else
+		{
+			$this->model_user->add_user();
+			$this->dangky_thanhcong();
+		}
+	}
+	public function thoat()
 	{
-		$data['title']='Đăng ký thành công';
-		$this->load->view('formsuccess',$data);
-	}	
+		$newdata = array(
+		'user_name'		=>'',
+		'user_email'	=> '',
+		'logged_in'		=> FALSE,
+		);
+		$this->session->unset_userdata($newdata );
+		$this->session->sess_destroy();
+		$this->index();
+	}
 }
 
 /* End of file welcome.php */
