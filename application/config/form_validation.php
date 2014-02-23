@@ -1,6 +1,6 @@
 <?php
 $config = array(
- 'signup' => array(
+	'signup' => array(
 					array(
 							'field' => 'user_name',
 							'label' => 'Tên đăng nhập',
@@ -19,22 +19,56 @@ $config = array(
 					array(
 							'field' => 'email_address',
 							'label' => 'Email',
-							'rules' => 'required|valid_email'
+							'rules' => 'required|valid_email|xss_clean|is_unique[user.email]'
 						 )
 					),
- 'signin' => array(
+	'signin' => array(
 					array(
 							'field' => 'user_name',
 							'label' => 'Tên đăng nhập',
-							'rules' => 'trim|min_length[4]|required|xss_clean]'
+							'rules' => 'trim|min_length[4]|required|xss_clean'
 						 ),
 					array(
 							'field' => 'password',
 							'label' => 'Mật khẩu',
 							'rules' => 'required'
 						 )
-					),					
- 'email' => array(
+					),	
+	'capnhat_thongtincanhan' => array(
+					array(
+							'field' => 'HoTen',
+							'label' => 'Họ tên',
+							'rules' => 'xss_clean'
+						 ),
+					array(
+							'field' => 'DiaChi',
+							'label' => 'Địa chỉ',
+							'rules' => 'xss_clean'
+						 ),
+					array(
+							'field' => 'SDT',
+							'label' => 'Số điện thoại',
+							'rules' => 'xss_clean|numeric'
+						)
+					),		
+	'doimatkhau' => array(
+					array(
+							'field' => 'password_old',
+							'label' => 'Mật khẩu cũ',
+							'rules' => 'required|xss_clean'
+						 ),
+					array(
+							'field' => 'password_new',
+							'label' => 'Mật khẩu mới',
+							'rules' => 'required|xss_clean'
+						 ),
+					array(
+							'field' => 'password_newcof',
+							'label' => 'Xác nhận mật khẩu',
+							'rules' => 'required|xss_clean|matches[password_new]'
+						)
+					),								
+	'email' => array(
 					array(
 							'field' => 'emailaddress',
 							'label' => 'EmailAddress',

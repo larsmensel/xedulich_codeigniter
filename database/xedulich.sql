@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 21, 2014 at 10:23 AM
+-- Generation Time: Feb 23, 2014 at 09:00 AM
 -- Server version: 5.6.12-log
--- PHP Version: 5.5.9
+-- PHP Version: 5.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -224,26 +224,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `HoTen` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DiaChi` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SDT` varchar(13) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`idUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`idUser`, `username`, `email`, `password`) VALUES
-(1, 'test', 'test@yahoo.com', '202cb962ac59075b964b07152d234b70'),
-(2, 'sssss', 'test1@yahoo.com', '698d51a19d8a121ce581499d7b701668'),
-(3, 'trungnghia112', '34534@gmail.com', '596e2656c622bca02e4861668a132f28'),
-(4, 'admin', '34534@gmail.com', 'e10adc3949ba59abbe56e057f20f883e'),
-(5, '123456', 'tra@gmail.com', 'e10adc3949ba59abbe56e057f20f883e'),
-(6, 'admin1111', 'aredstgadr@dsfgd.com', '81dc9bdb52d04dc20036dbd8313ed055'),
-(7, 'nghisaaaaaa1111', 'aredstgad1r@dsfgd.com', '7fa8282ad93047a4d6fe6111c93b308a'),
-(8, '111111121', 'aredstga111dr@dsfgd.com', '96e79218965eb72c92a549dd5a330112'),
-(9, 'adminaaaaaa', 'aredstgasd1r@dsfgd.com', '2268e314735438ffff5020c88ed1fade'),
-(10, 'admindfg', 'aredstga111112d1r@dsfgd.com', '96e79218965eb72c92a549dd5a330112'),
-(11, 'admsin', 'aredsatga111dr@dsfgd.com', 'e10adc3949ba59abbe56e057f20f883e'),
-(12, 'test1', 'aatga111dr@dsfgd.com', 'e10adc3949ba59abbe56e057f20f883e');
+INSERT INTO `user` (`idUser`, `username`, `email`, `password`, `HoTen`, `DiaChi`, `SDT`) VALUES
+(1, 'trungnghia112', '34534@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', '0', '0', '0');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

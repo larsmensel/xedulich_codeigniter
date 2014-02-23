@@ -24,8 +24,6 @@ class User extends MX_Controller {
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');	
 		
-		
-		
 		$this->lang->load('form_validation','vietnamese');	
 		//form_validation->ten file language/vietnamese/form_validation_lang.php
 		//vietnamese -> ten thu muc chua language/vietnamese
@@ -49,10 +47,78 @@ class User extends MX_Controller {
 		}
 	}
 	public function thongtin_canhan()
-	{
+	{		
+		if(($this->session->userdata('user_name')!=""))
+		{
 			$data['title']= 'Thông tin cá nhân';
-			$this->template->build('thongtin_canhan',$data);
+			$ss_user_name = $this->session->userdata('user_name');				
+			$data['results_user'] = $this->model_user->get_thongtin_user($ss_user_name);
+			if($this->form_validation->run('capnhat_thongtincanhan') == FALSE)
+			{
+				$this->template->build('thongtin_canhan',$data);
+			}
+			else
+			{
+				if($this->input->post('btn_capnhat_user')!=''){
+					$this->model_user->update_user($ss_user_name);
+					$this->template->build('thongtin_canhan',$data);
+				}
+				else{
+					$this->template->build('thongtin_canhan',$data);
+				}				
+			}
+		}
+		else{
+			$data['title']= 'Đăng nhập';
+			$data['error_signin']= '';
+			$this->template->build('signin',$data);
+		}
+	
 	}
+	
+	public function doimatkhau()
+	{		
+		if(($this->session->userdata('user_name')!=""))
+		{
+			$data['title']= 'Đổi mật khẩu';
+			$data['error_pass'] = '';
+			$ss_user_name = $this->session->userdata('user_name');				
+			$lay_passold = $this->model_user->get_thongtin_user($ss_user_name);
+			foreach($lay_passold as $row_passold){
+				$pass_old = $row_passold->password;
+			}	
+			
+			if($this->form_validation->run('doimatkhau') == FALSE)
+			{
+				$this->template->build('doi_matkhau',$data);
+			}
+			else
+			{
+				$passold_in=md5($this->input->post('password_old'));
+				if($passold_in == $pass_old){
+					$this->model_user->change_pass($ss_user_name);
+					
+					
+					$newdata = array(
+						'thongbaokq' => '<div class="error-form">Đổi mật khẩu thành công</div>'
+					);
+					$this->session->set_userdata($newdata);
+					$this->thongtin_canhan();
+				}
+				else{
+					$data['error_pass'] = '<div class="error-form">Mật khẩu cũ không đúng</div>';
+					$this->template->build('doi_matkhau',$data);
+				}
+			}
+		}
+		else{
+			$data['title']= 'Đăng nhập';
+			$data['error_signin']= '';
+			$this->template->build('signin',$data);
+		}
+	
+	}
+	
 	public function dangnhap()
 	{
 		$data['error_signin']= '';
@@ -72,7 +138,7 @@ class User extends MX_Controller {
 			if($result) $this->thongtin_canhan();
 			else {
 				$data['title']= 'Đăng nhập';
-				$data['error_signin']= 'Tên đăng nhập hoặc mật khẩu không đúng';
+				$data['error_signin']= '<div class="error-form">Tên đăng nhập hoặc mật khẩu không đúng</div>';
 				$this->template->build('signin',$data);
 			}
 		}
@@ -88,17 +154,21 @@ class User extends MX_Controller {
 		$this->form_validation->set_rules('password', 'Password', 'required_pass|matches[passconf]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');*/		
-		
-		
-		if($this->form_validation->run('signup') == FALSE)
+		if(($this->session->userdata('user_name')!=""))
 		{
-			$data['title']= 'Đăng ký';
-			$this->template->build('signup',$data);
+			$this->thongtin_canhan();
 		}
-		else
-		{
-			$this->model_user->add_user();
-			$this->dangky_thanhcong();
+		else{
+			if($this->form_validation->run('signup') == FALSE)
+			{
+				$data['title']= 'Đăng ký';
+				$this->template->build('signup',$data);
+			}
+			else
+			{
+				$this->model_user->add_user();
+				$this->dangky_thanhcong();
+			}
 		}
 	}
 	public function thoat()

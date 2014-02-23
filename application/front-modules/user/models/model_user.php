@@ -19,6 +19,44 @@ class Model_user extends CI_Model{
 		$this->session->set_userdata($newdata);
 	}
 	
+	
+	public function update_user($ss_user_name)
+	{
+		$data = array(
+               'HoTen' => $this->input->post('HoTen'),
+               'DiaChi' => $this->input->post('DiaChi'),
+               'SDT' => $this->input->post('SDT')
+        		);				
+
+		$this->db->where('username', $ss_user_name);
+		$this->db->update('user', $data); 
+		$newdata = array(
+					'thongbaokq' => '<div class="error-form">Cập nhật thành công</div>'
+				);
+		$this->session->set_userdata($newdata);
+
+	}
+	
+	public function change_pass($ss_user_name)
+	{
+		$data = array(
+			   'password'=>md5($this->input->post('password_new'))
+        		);				
+
+		$this->db->where('username', $ss_user_name);
+		$this->db->update('user', $data); 
+
+	}
+	
+	
+	public function get_thongtin_user($ss_user_name)
+	{
+		$query = $this->db->get_where('user', array('username' => $ss_user_name));
+		return  $query->result();
+	}
+	
+		
+	
 	public function login($username,$password)
 	{
 		$this->db->where("username",$username);

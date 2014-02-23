@@ -39,6 +39,21 @@ $this->banner->index();
     <?php } ?>
   </div>
   <div class="clear" style="margin-bottom:10px;"></div>
+  <div class="tn-bxcomment">
+    <h2 class="tn-titletx">Bình luận</h2>
+    <div id="container-comment">
+    	<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=266538110043726";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="fb-comments" data-href="<?php echo base_url().'xe_detail/'.$IDchitietxe; ?>" data-width="660" data-numposts="5" data-colorscheme="light"></div>
+    </div>
+  </div>
+  <div class="clear" style="margin-bottom:10px;"></div>
   <div class="tt-box-style">
     <h2 class="tt-box-style-tt">Cùng loại xe <?php echo $TenLoaixe; ?></h2>
     <ul class="tt-box-grids">
