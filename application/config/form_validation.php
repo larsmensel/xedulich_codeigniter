@@ -67,6 +67,28 @@ $config = array(
 							'label' => 'Xác nhận mật khẩu',
 							'rules' => 'required|xss_clean|matches[password_new]'
 						)
+					),
+	'lienhe' => array(
+					array(
+							'field' => 'name',
+							'label' => 'Tên',
+							'rules' => 'required|xss_clean'
+						 ),
+					array(
+							'field' => 'email',
+							'label' => 'Email',
+							'rules' => 'required|xss_clean|valid_email'
+						 ),
+					array(
+							'field' => 'tieude',
+							'label' => 'Tiêu đề',
+							'rules' => 'required|xss_clean'
+						 ),	 
+					array(
+							'field' => 'noidung',
+							'label' => 'Nội dung',
+							'rules' => 'required|xss_clean'
+						)
 					),								
 	'email' => array(
 					array(
