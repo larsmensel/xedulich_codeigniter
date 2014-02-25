@@ -21,10 +21,6 @@ class Lienhe extends MX_Controller {
     public function __construct() {
         parent::__construct();
 		//$this->load->library('email');
-		
-		//gọi controller captcha
-		$this->load->module('captcha');	
-		
         
     }
 	public function index()
@@ -41,47 +37,17 @@ class Lienhe extends MX_Controller {
 			
 			$this->form_validation->set_error_delimiters('<div class="error-form">', '</div>');
 			
-			if($this->form_validation->run('lienhe') == FALSE) //kết quả trả về sai
-			{								
-				// xóa hình captcha cũ
-				$this->load->captcha->deleteImage();
-				$data['image_captcha'] = $this->load->captcha->_tao_captcha();
+			if($this->form_validation->run('lienhe') == FALSE)
+			{
 				$this->template->build('lienhe',$data);
 			}
-			else //kết quả trả về đúng
+			else
 			{
-				if($this->input->post('btn_lienhe')!=''){	//kiểm tra user có bấm nút submit hay ko (có bấm)				
-				
-					$captcha = $this->input->post('captcha');
-					$this->session->set_userdata('loi_captcha', '');
-					
-					//kiểm tra mã captcha nhập đúng hay không ($this->load->captcha->kiemtra($captcha)==true)	
-					if(($this->load->captcha->kiemtra($captcha))){ 	
-					
-					
-						//gửi Mail
-						$this->sendMail();						
-						
-						// xóa hình captcha cũ
-						$this->load->captcha->deleteImage();
-						$data['image_captcha'] = $this->load->captcha->_tao_captcha();
-						
-						$this->template->build('lienhe',$data);
-					}
-					else{
-						
-						$this->session->set_userdata('loi_captcha', '<div class="error-form">Mã xác nhận không đúng</div>');
-						// xóa hình captcha cũ
-						$this->load->captcha->deleteImage();
-						$data['image_captcha'] = $this->load->captcha->_tao_captcha();
-						$this->template->build('lienhe',$data);
-					}								
-					
+				if($this->input->post('btn_lienhe')!=''){					
+					$this->sendMail();
+					$this->template->build('lienhe',$data);
 				}
 				else{
-					// xóa hình captcha cũ
-					$this->load->captcha->deleteImage();
-					$data['image_captcha'] = $this->load->captcha->_tao_captcha();
 					$this->template->build('lienhe',$data);
 				}				
 			}
@@ -96,7 +62,10 @@ class Lienhe extends MX_Controller {
 			
 			http://ellislab.com/codeigniter/user-guide/libraries/email.html
 		****************************************/
-
+		
+		
+		
+		
 		$this->load->library('email');
 		$this->email->clear();
 		

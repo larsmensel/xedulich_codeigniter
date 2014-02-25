@@ -48,16 +48,31 @@ $this->banner->index();
             <?php echo form_error('name'); ?> </div>
           <div>
             <h5>Địa chỉ email:</h5>
-            <input type="email" name="email" value="<?php echo set_value('email'); ?>" autocomplete="off" size="50" />
+            <input type="email" name="email" value="<?php echo set_value('email'); ?>" size="50" />
             <?php echo form_error('email'); ?> </div>
           <div>
             <h5>Tiêu đề thông điệp:</h5>
-            <input type="text" name="tieude" value="<?php echo set_value('tieude'); ?>" autocomplete="off" size="50" />
+            <input type="text" name="tieude" value="<?php echo set_value('tieude'); ?>" size="50" />
             <?php echo form_error('tieude'); ?> </div>
           <div>
             <h5>Nội dung</h5>
             <textarea style="width:316px; resize:none;height:150px;" name="noidung" id="noidung"><?php echo set_value('noidung'); ?></textarea>
 <?php echo form_error('noidung'); ?> </div>
+          <div>
+          <h5>Mã xác nhận</h5>
+          <input type="text" name="captcha" value="" autocomplete="off"/> <?php echo $image_captcha;?>
+          <?php echo form_error('captcha'); ?>
+          
+          <?php
+		  $loi_captcha='';
+		  if(($this->session->userdata('loi_captcha')!="")){
+			  $loi_captcha=$this->session->userdata('loi_captcha');
+			  $this->session->unset_userdata('loi_captcha');
+		  }
+		  echo $loi_captcha;
+		  ?>
+          
+          </div>
           <div>
             <input class="tt-input-form" name="btn_lienhe" type="submit" value="Gửi" />
           </div>

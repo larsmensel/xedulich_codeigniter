@@ -88,6 +88,11 @@ $config = array(
 							'field' => 'noidung',
 							'label' => 'Nội dung',
 							'rules' => 'required|xss_clean'
+						 ),	 	 
+					array(
+							'field' => 'captcha',
+							'label' => 'Mã xác nhận',
+							'rules' => 'required|xss_clean'
 						)
 					),								
 	'email' => array(
