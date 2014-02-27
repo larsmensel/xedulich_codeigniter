@@ -153,7 +153,9 @@ class User extends MX_Controller {
 		/*$this->form_validation->set_rules('username', 'Username', 'required|min_length[3]|max_length[12]|is_unique[user.username]');
 		$this->form_validation->set_rules('password', 'Password', 'required_pass|matches[passconf]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
-		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');*/		
+		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');*/	
+		$this->load->module('captcha');	
+			
 		if(($this->session->userdata('user_name')!=""))
 		{
 			$this->thongtin_canhan();
@@ -162,15 +164,90 @@ class User extends MX_Controller {
 			if($this->form_validation->run('signup') == FALSE)
 			{
 				$data['title']= 'Đăng ký';
+				
+				// xóa hình captcha cũ
+				$this->load->captcha->deleteImage();
+				$data['image_captcha'] = $this->load->captcha->_tao_captcha();
+				
 				$this->template->build('signup',$data);
 			}
 			else
 			{
-				$this->model_user->add_user();
-				$this->dangky_thanhcong();
+				$captcha = $this->input->post('captcha');
+				$this->session->set_userdata('loi_captcha', '');				
+				
+				if(($this->load->captcha->kiemtra($captcha))){								
+						
+						// xóa hình captcha cũ
+						$this->load->captcha->deleteImage();
+						$data['image_captcha'] = $this->load->captcha->_tao_captcha();
+						
+						$this->model_user->add_user();
+						$this->dangky_thanhcong();
+					}
+					else{
+						
+						$this->session->set_userdata('loi_captcha', '<div class="error-form">Mã xác nhận không đúng</div>');
+						// xóa hình captcha cũ
+						$this->load->captcha->deleteImage();
+						$data['image_captcha'] = $this->load->captcha->_tao_captcha();
+						
+						$this->template->build('signup',$data);
+					}
+										
 			}
 		}
 	}
+	
+	
+	
+	public function sendMail()
+	{
+		
+		/****************************************
+			Bat hàm extension=php_openssl.dll trong file php extensions			
+			http://ellislab.com/codeigniter/user-guide/libraries/email.html
+		****************************************/
+
+		$this->load->library('email');
+		$this->email->clear();	
+		
+		$config['protocol'] = "smtp";
+		$config['smtp_host'] = "ssl://smtp.gmail.com";
+		$config['smtp_port'] = "465";
+		$config['smtp_user'] = "web.xedulich@gmail.com"; 
+		$config['smtp_pass'] = "xedulich@123";
+		$config['mailtype'] = "html";
+		$config['newline'] = "\r\n";
+		
+		$this->email->initialize($config);
+		
+		$send_email = $this->input->post('email');
+		$send_name = $this->input->post('name');
+		$send_subject = $this->input->post('tieude');
+		$send_message = $this->input->post('noidung');		
+		
+		$this->email->from($send_email, $send_name);
+		$list = array('nghia.tran@pinetech.vn','nghia.tran@dmmt.vn');
+		$this->email->to($list);
+		$this->email->reply_to($send_email, $send_name);
+		$this->email->subject($send_subject);
+		$this->email->message($send_message);		
+		
+		if($this->email->send())
+		{
+			$newdata = array('thongbaokq' => '<div class="error-form">Email đã được gửi thành công</div>');
+			$this->session->set_userdata($newdata);
+		}
+		else
+		{
+			$newdata = array('thongbaokq' => '<div class="error-form">Có lỗi xảy ra trong quá trình gửi mail</div>');
+			$this->session->set_userdata($newdata);
+			//show_error($this->email->print_debugger());
+		}			
+	}
+		
+	
 	public function thoat()
 	{
 		$newdata = array(

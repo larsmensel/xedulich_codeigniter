@@ -34,7 +34,21 @@ $this->banner->index();
         <input type="text" name="email_address" value="<?php echo set_value('email_address'); ?>" size="50" />
         <?php echo form_error('email_address'); ?>
         </div>
-        
+        <div>
+          <h5>Mã xác nhận</h5>
+          <input type="text" name="captcha" value="" autocomplete="off"/> <?php echo $image_captcha;?>
+          <?php echo form_error('captcha'); ?>
+          
+          <?php
+		  $loi_captcha='';
+		  if(($this->session->userdata('loi_captcha')!="")){
+			  $loi_captcha=$this->session->userdata('loi_captcha');
+			  $this->session->unset_userdata('loi_captcha');
+		  }
+		  echo $loi_captcha;
+		  ?>
+          
+          </div>
         <div><input class="tt-input-form" type="submit" value="Đăng ký" /></div>
         
         <?php echo form_close(); ?>

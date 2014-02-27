@@ -20,7 +20,12 @@ $config = array(
 							'field' => 'email_address',
 							'label' => 'Email',
 							'rules' => 'required|valid_email|xss_clean|is_unique[user.email]'
-						 )
+						 ),
+					array(
+							'field' => 'captcha',
+							'label' => 'Mã xác nhận',
+							'rules' => 'required|xss_clean'
+						)
 					),
 	'signin' => array(
 					array(
