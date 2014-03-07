@@ -101,7 +101,8 @@ class Sendmail extends MX_Controller {
 		$data['u_name'] = $send_name;
 		$data['u_pass'] = $send_message;
 		
-		$get_html = $this->template->build('sendmail_dangky',$data,TRUE);
+		$get_html = $this->load->view('sendmail_dangky',$data,TRUE);
+		//var_dump($get_html);exit;
 
 
 		// this will return you html data as message
