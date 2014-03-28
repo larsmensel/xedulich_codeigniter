@@ -18,6 +18,7 @@ $this->banner->index();
 		$Mota        = $row->Mota;
 		$TenHangxe   = $row->TenHangxe;
 		$TenLoaixe   = $row->TenLoaixe;
+		$Gia		 = $row->Gia;
 	?>
     <h1 class="tt-detail-style-tt"><?php echo $TenXe ;?></h1>
     <ul class="tt-detail-ul pull-left">
@@ -29,7 +30,38 @@ $this->banner->index();
       <li><strong>Loại xe:</strong> <?php echo $TenLoaixe;?></li>
       <li><strong>Hiệu xe:</strong> <?php echo $TenHangxe;?></li>
       <li><strong>Màu xe:</strong> <?php echo $MauXe;?></li>
+      <li><strong>Gia:</strong> <?php echo $Gia;?> VNĐ</li>
+      <li> <?php echo form_open('giohang/add'); ?>
+        <fieldset>
+          <label>Quantity</label>
+          <?php //echo form_input('quantity', '1', 'maxlength="2"'); ?> 
+		  <?php echo form_hidden('xe_id', $IDchitietxe); ?> 
+		  <?php echo form_submit('add', 'Thuê xe'); ?>
+        </fieldset>
+        <?php echo form_close(); ?> </li>
     </ul>
+    
+     <script>
+    	/*$(document).ready(function() {
+			var link = "<?php //echo base_url();?>/index.php/"; // Url to your application (including index.php/)
+			$("ul.tt-detail-ul form").submit(function() {
+		 		// Get the product ID and the quantity
+				var id = $(this).find('input[name=product_id]').val();
+				var qty = $(this).find('input[name=quantity]').val();
+				//alert('ID:' + id + '\n\rQTY:' + qty);
+				
+				 $.post(link + "cart/add_cart_item", { product_id: id, quantity: qty, ajax: '1' },
+					function(data){
+						// Interact with returned data
+				 });
+				
+				
+				return false; // Stop the browser of loading the page defined in the form "action" parameter.
+			});
+		 
+		});*/
+    </script>
+    
     <div class="tt-detail-hinh pull-right"><img src="<?php echo base_url().'upload/'.$UrlHinh;?>" width="150" height="110" alt=""></div>
     <div class="clear"></div>
     <div class="tt-detail-mota">
@@ -42,15 +74,15 @@ $this->banner->index();
   <div class="tn-bxcomment">
     <h2 class="tn-titletx">Bình luận</h2>
     <div id="container-comment">
-    	<div id="fb-root"></div>
-		<script>(function(d, s, id) {
+      <div id="fb-root"></div>
+      <script>(function(d, s, id) {
           var js, fjs = d.getElementsByTagName(s)[0];
           if (d.getElementById(id)) return;
           js = d.createElement(s); js.id = id;
           js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=266538110043726";
           fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-        <div class="fb-comments" data-href="<?php echo base_url().'xe_detail/'.$IDchitietxe; ?>" data-width="660" data-numposts="5" data-colorscheme="light"></div>
+      <div class="fb-comments" data-href="<?php echo base_url().'xe_detail/'.$IDchitietxe; ?>" data-width="660" data-numposts="5" data-colorscheme="light"></div>
     </div>
   </div>
   <div class="clear" style="margin-bottom:10px;"></div>
@@ -124,10 +156,10 @@ $this->banner->index();
     </ul>
   </div>
   <div class="clear" style="margin-bottom:10px;"></div>
-  <div class="tt-box-style">  	
-  <h2 class="tt-box-style-tt">Cùng <?php echo mb_strtolower($results_tenloaithue); ?></h2>
-  <ul class="tt-box-grids">
-    <?php 
+  <div class="tt-box-style">
+    <h2 class="tt-box-style-tt">Cùng <?php echo mb_strtolower($results_tenloaithue); ?></h2>
+    <ul class="tt-box-grids">
+      <?php 
 	  if(!empty($results_xecung_loaithue)){ //nếu có dữ liệu liên quan thì hiện ra kết quả
 	  foreach($results_xecung_loaithue as $row_thue){
 		  $IDchitietxe_ct = $row_thue->IDchitietxe;
@@ -138,26 +170,26 @@ $this->banner->index();
 		  $TenLoaixe_ct   = $row_thue->TenLoaixe;
 		  $TenHangxe_ct   = $row_thue->TenHangxe;
 	  ?>
-    <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="pull-left"><img src="<?php echo base_url().'upload/'.$UrlHinh_ct;?>" width="150" height="110"></a>
-      <div class="tt-body-overl">
-        <p class="tt-box-grids-title"> <?php echo $TenXe_ct;?> </p>
-        <ul>
-          <li><strong>Năm Sản Xuất:</strong> <?php echo $NamSx_ct;?></li>
-          <li><strong>Loại xe:</strong> <?php echo $TenLoaixe_ct;?></li>
-          <li><strong>Hiệu xe:</strong> <?php echo $TenHangxe_ct;?></li>
-          <li><strong>Màu xe:</strong> <?php echo $MauXe_ct;?></li>
-        </ul>
-        <p class="tt-txt-right"><a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="tt-btn-viewmore"> Chi tiết</a> </p>
-      </div>
-    </li>
-    <?php } 
+      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="pull-left"><img src="<?php echo base_url().'upload/'.$UrlHinh_ct;?>" width="150" height="110"></a>
+        <div class="tt-body-overl">
+          <p class="tt-box-grids-title"> <?php echo $TenXe_ct;?> </p>
+          <ul>
+            <li><strong>Năm Sản Xuất:</strong> <?php echo $NamSx_ct;?></li>
+            <li><strong>Loại xe:</strong> <?php echo $TenLoaixe_ct;?></li>
+            <li><strong>Hiệu xe:</strong> <?php echo $TenHangxe_ct;?></li>
+            <li><strong>Màu xe:</strong> <?php echo $MauXe_ct;?></li>
+          </ul>
+          <p class="tt-txt-right"><a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="tt-btn-viewmore"> Chi tiết</a> </p>
+        </div>
+      </li>
+      <?php } 
 	  }
 	  else{
 	  	echo 'Không có dữ liệu';
 	  }
 	  ?>
-  </ul>
-</div>
+    </ul>
+  </div>
   <div class="clear" style="margin-bottom:10px;"></div>
 </div>
 <?php

@@ -9,4 +9,5 @@ $(document).ready(function(e) {
 		slides:'.banner-slideshow-in',
 		pager:'.banner-slideshow-pager'
 	});
+	
 });
