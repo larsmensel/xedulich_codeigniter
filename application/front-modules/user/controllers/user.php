@@ -218,6 +218,8 @@ class User extends MX_Controller {
 		$config['smtp_user'] = "web.xedulich@gmail.com"; 
 		$config['smtp_pass'] = "xedulich@123";
 		$config['mailtype'] = "html";
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
 		$config['newline'] = "\r\n";
 		
 		$this->email->initialize($config);

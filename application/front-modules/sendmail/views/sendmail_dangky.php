@@ -59,7 +59,7 @@
             <div id="body">
 
 
-  	<strong> Hello1's Value! </strong>
+  	<strong> Hello1's Value! nghĩa trần â ứ w ắ sdkfaksf ị oskdfix </strong>
 	<code><?php echo $u_name; ?></code>
 
 	<strong> Hello2's Value! </strong>

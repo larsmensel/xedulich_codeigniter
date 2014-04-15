@@ -77,7 +77,10 @@ class Sendmail extends MX_Controller {
 	 
 	 public function sendMail_dangky($send_email,$send_name,$send_subject,$send_message)
 	{
-		
+		/*$send_email = "loi.huynh@dmmt.vn";
+		$send_name = "nghĩa";
+		$send_subject ="tradvg";
+		$send_message ="test";*/
 		$this->email->clear();		
 		$config['protocol'] = "smtp";
 		$config['smtp_host'] = "ssl://smtp.gmail.com";
@@ -85,6 +88,8 @@ class Sendmail extends MX_Controller {
 		$config['smtp_user'] = "web.xedulich@gmail.com"; 
 		$config['smtp_pass'] = "xedulich@123";
 		$config['mailtype'] = "html";
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
 		$config['newline'] = "\r\n";
 		$this->email->initialize($config);	
 		
