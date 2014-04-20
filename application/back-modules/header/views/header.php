@@ -122,9 +122,8 @@
             <!-- /input-group --> 
           </li>
           <li> <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> </li>
-          <li> <a href="<?php echo base_url(); ?>xe/chitietxe"><i class="fa fa-bar-chart-o fa-fw"></i> Chi Tiết Xe</a>
-            
-          </li>
+          <li> <a href="<?php echo base_url(); ?>xe/chitietxe"><i class="fa fa-bar-chart-o fa-fw"></i> Chi Tiết Xe</a></li>
+          <li> <a href="<?php echo base_url(); ?>tintuc/chitiettintuc"><i class="fa fa-bar-chart-o fa-fw"></i> Chi Tiết Tin Tức</a></li>
           <li> <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a> </li>
           <li> <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a> </li>
           <li> <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>

@@ -12,7 +12,7 @@
       <div class="panel panel-default">
         <div class="panel-heading"> Nhập Dữ Liệu Chi Tiết Xe </div>
         <div class="panel-body">
-            <?php echo form_open('xe/themchitietxe'); ?>
+            <?php echo form_open_multipart('xe/themchitietxe'); ?>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
