@@ -129,7 +129,9 @@ $assign_to_config['template_path'] = 'templates/';
 $assign_to_config['layout_path'] = 'admin/';
 
 //custom config overwritten the original one by Bhuban <bhuban@gmail.com>;
-$assign_to_config['base_url']	= 'http://localhost/modular/admin';
+$assign_to_config['base_url']	= 'http://localhost/xedulich_ci/admin';
+//$assign_to_config['base_theme']	= 'http://localhost/xedulich_ci';
+
 $assign_to_config['index_page'] = '';
 $assign_to_config['url_suffix'] = '.html';
 
