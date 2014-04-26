@@ -7,66 +7,100 @@ $this->banner->index();
 <div class="clear"></div>
 <div class="tt-main-left">
   <div class="tt-box-style">
-    <h2 class="tt-box-style-tt">Gio hang</h2>
-
-
-<?php echo form_open('giohang/capnhatsp'); ?>
-
-<table cellpadding="6" cellspacing="1" style="width:100%" border="0">
-
-<tr>
-  <th>QTY</th>
-  <th>Item Description</th>
-  <th style="text-align:right">Item Price</th>
-  <th style="text-align:right">Sub-Total</th>
-</tr>
-
-<?php $i = 1; ?>
-
-<?php foreach ($this->cart->contents() as $items): ?>
-
-	<?php echo form_hidden($i.'[rowid]', $items['rowid']); ?>
-
-	<tr>
-	  <td><?php echo form_input(array('name' => $i.'[qty]', 'value' => $items['qty'], 'maxlength' => '3', 'size' => '5')); ?></td>
-	  <td>
-		<?php echo $items['name']; ?>
-
-			<?php if ($this->cart->has_options($items['rowid']) == TRUE): ?>
-
-				<p>
-					<?php foreach ($this->cart->product_options($items['rowid']) as $option_name => $option_value): ?>
-
-						<strong><?php echo $option_name; ?>:</strong> <?php echo $option_value; ?><br />
-
-					<?php endforeach; ?>
-				</p>
-
-			<?php endif; ?>
-
-	  </td>
-	  <td style="text-align:right"><?php echo $this->cart->format_number($items['price']); ?></td>
-	  <td style="text-align:right">$<?php echo $this->cart->format_number($items['subtotal']); ?></td>
-	</tr>
-
-<?php $i++; ?>
-
-<?php endforeach; ?>
-
-<tr>
-  <td colspan="2"> </td>
-  <td class="right"><strong>Total</strong></td>
-  <td class="right">$<?php echo $this->cart->format_number($this->cart->total()).'/'.$this->cart->total_items(); ?></td>
-</tr>
-
-</table>
-
-<p><?php echo form_submit('', 'Update your Cart'); ?></p>
-
-
-
-
-
+    <h2 class="tt-box-style-tt">Xác nhận</h2>
+    <?php if($cart = $this->cart->contents()){ ?>
+    
+    <?php $tongtien = $this->cart->total();?>
+    
+    
+    <?php foreach($cart as $item){	
+		$TenXe = $item['name'];
+		$so_ngay = $item['qty'];
+		$Gia = $item['price'];
+	 ?>
+     <?php echo form_open('giohang'); ?>
+    <table class="tt-giohang" width="100%" border="1" cellspacing="0" cellpadding="5">
+      <tr>
+        <th width="40%" align="right" scope="row">Tên xe</th>
+        <td><?php echo $TenXe; ?></td>
+      </tr>
+      <tr>
+        <th width="40%" align="right" scope="row">Giá/Ngày</th>
+        <td><?php echo number_format($Gia,0,",","."); ?> vnđ</td>
+      </tr>
+      <tr>
+        <th width="40%" align="right" scope="row">Số ngày thuê</th>
+        <td><?php echo $so_ngay; ?></td>
+      </tr>
+      <?php $options = $this->cart->product_options($item['rowid']);?>
+	  <?php /*?>foreach ($this->cart->product_options($item['rowid']) as $option_name => $option_value){ ?>
+      <tr>
+        <th width="40%" align="right" scope="row"><?php echo $option_name; ?></th>
+        <td><?php echo $option_value; ?></td>
+      </tr>
+      <?php }//end foreach product_options ?><?php */?>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Tên khách hàng</th>
+        <td><?php echo $options['kh_name']; ?></td>
+      </tr>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Số điện thoại</th>
+        <td><?php echo $options['kh_phone']; ?></td>
+      </tr>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Email</th>
+        <td><?php echo $options['kh_email']; ?></td>
+      </tr>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Ngày thuê xe</th>
+        <td><?php echo $options['ngay_thue']; ?></td>
+      </tr>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Đi từ</th>
+        <td><?php echo $options['di_tu']; ?></td>
+      </tr>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Đi đến</th>
+        <td><?php echo $options['di_den']; ?></td>
+      </tr>
+      
+      <tr>
+        <th width="40%" align="right" scope="row">Thành tiền</th>
+        <td><strong style="color:#F00;"><?php echo number_format($tongtien,0,",","."); ?> vnđ </strong></td>
+      </tr>
+      <tr>
+        <th colspan="2" scope="row"><input type="text" name="captcha" value="" autocomplete="off"/> <?php echo $image_captcha;?>
+          <?php echo form_error('captcha'); ?>
+          <?php
+		  $loi_captcha='';
+		  if(($this->session->userdata('loi_captcha')!="")){
+			  $loi_captcha=$this->session->userdata('loi_captcha');
+			  $this->session->unset_userdata('loi_captcha');
+		  }
+		  echo $loi_captcha;
+		  ?>
+          
+          </th>
+      </tr>
+      <tr>
+        <th colspan="2" scope="row"> 
+        	<input class="tt-input-form" type="button" onClick="window.location.href='<?php echo base_url().'giohang/datxe/'.$item['id']; ?>'" value="Trở về">
+            <input class="tt-input-form" type="submit" value="Xác nhận"> 
+        </th>
+      </tr>
+    </table>
+    <?php echo form_close(); ?>
+    
+    <?php }//end foreach ?>
+    <?php }else{
+		echo 'Giỏ hàng rỗng';
+	} ?>
   </div>
 </div>
 <?php

@@ -99,6 +99,50 @@ $config = array(
 							'label' => 'Mã xác nhận',
 							'rules' => 'required|xss_clean'
 						)
+					),	
+	'datxe_form' => array(
+					array(
+							'field' => 'kh_name',
+							'label' => 'Tên khách hàng',
+							'rules' => 'required|xss_clean'
+						 ),
+					array(
+							'field' => 'kh_phone',
+							'label' => 'Số điện thoại',
+							'rules' => 'required|xss_clean'
+						 ),
+					array(
+							'field' => 'kh_email',
+							'label' => 'Email',
+							'rules' => 'required|xss_clean|valid_email'
+						 ),
+					array(
+							'field' => 'infromdate',
+							'label' => 'Ngày bắt đầu thuê',
+							'rules' => 'required|xss_clean'
+						 ),	 
+					array(
+							'field' => 'qty',
+							'label' => 'Số ngày thuê',
+							'rules' => 'required|xss_clean'
+						 ),	 
+					array(
+							'field' => 'infrom',
+							'label' => 'Đi từ',
+							'rules' => 'required|xss_clean'
+						 ),		 
+					array(
+							'field' => 'into',
+							'label' => 'Đi đến',
+							'rules' => 'required|xss_clean'
+						)
+					),	
+	'xacnhan_giohang' => array( 	 
+					array(
+							'field' => 'captcha',
+							'label' => 'Mã xác nhận',
+							'rules' => 'required|xss_clean'
+						)
 					),								
 	'email' => array(
 					array(

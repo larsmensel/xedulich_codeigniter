@@ -30,15 +30,8 @@ $this->banner->index();
       <li><strong>Loại xe:</strong> <?php echo $TenLoaixe;?></li>
       <li><strong>Hiệu xe:</strong> <?php echo $TenHangxe;?></li>
       <li><strong>Màu xe:</strong> <?php echo $MauXe;?></li>
-      <li><strong>Gia:</strong> <?php echo $Gia;?> VNĐ</li>
-      <li> <?php echo form_open('giohang/add'); ?>
-        <fieldset>
-          <label>Quantity</label>
-          <?php //echo form_input('quantity', '1', 'maxlength="2"'); ?> 
-		  <?php echo form_hidden('xe_id', $IDchitietxe); ?> 
-		  <?php echo form_submit('add', 'Thuê xe'); ?>
-        </fieldset>
-        <?php echo form_close(); ?> </li>
+      <li><strong>Gia:</strong> <?php echo number_format($Gia,0,",","."); ?> vnđ</li>
+	  <li><strong>Đặt xe:</strong> <a class="tt-btn-viewmore" href="<?php echo base_url().'giohang/datxe/'.$IDchitietxe;?>">Đặt xe</a></li>
     </ul>
     
      <script>

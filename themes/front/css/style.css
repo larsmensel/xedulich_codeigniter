@@ -130,8 +130,15 @@ body { color: #545454; font-weight: normal; height: 100%; font-family: Arial, He
 .error-form{color:red;font-size:12px;}
 .tt-sty-form div{margin-bottom:5px;}
 .tt-sty-form textarea{font-family:Arial, Helvetica, sans-serif;font-size:13px;}
-.tt-input-form{background-color:#67B018;color:#FFF;border:0 none;display:inline-block;padding:5px 10px;}
+.tt-input-form{background-color:#67B018;color:#FFF;border:0 none;display:inline-block;padding:5px 10px;cursor:pointer;font-size:14px;font-weight:normal;}
 .tt-tintuc-style .pull-left > img{width:90px;height:auto;}
 .tt-contactform{margin:10px 0;font-size:13px;}
 .tt-contactform-ul {padding-left:20px;}
 .tt-contactform-ul li{margin-bottom:5px;padding-bottom:5px;list-style-position:outside;}
+
+.tt-giohang{margin:10px 0;}
+.tt-giohang td,.tt-giohang th{
+	padding:5px 10px;
+	border:1px solid #cdcdcd;
+	border-collapse:collapse;
+}
