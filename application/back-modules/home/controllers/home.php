@@ -34,25 +34,33 @@ class Home extends MX_Controller {
     }
 	public function index()
 	{
-		  if(($this->session->userdata('user_name')!=""))
+		if($this->session->userdata('logged_in')==FALSE)
 		{
-			$this->thanhcong();
+			$data['error_signin']= '';
+            $this->load->view('login',$data);
 		}
 		else
 		{
-           $data['error_signin']= '';
-           $this->load->view('login',$data);
-		}
-		 
-           
-           
+           $this->thanhcong();
+		}   
 	}
 	
 	public function thanhcong()
 	{
-             $this->template->build('home');
-           
-           
+		$data['title'] = 'Quản lý';
+		$this->template->build('home',$data);
+	}
+	
+	public function thoat()
+	{
+		$newdata = array(
+		'user_name'		=>'',
+		'user_email'	=> '',
+		'logged_in'		=> FALSE,
+		);
+		$this->session->unset_userdata($newdata );
+		$this->session->sess_destroy();
+		$this->index();
 	}
 	
 	public function dangnhap()
@@ -62,11 +70,7 @@ class Home extends MX_Controller {
 		$login_user_name=$this->input->post('user_name');
 		$login_password=md5($this->input->post('password'));
 		//var_dump($password);exit();
-		
-		
-		
 
-		
 		if($this->form_validation->run('signin') == FALSE) //kiem tra xem co nhap du lieu k, chua xet dung sai so voi database
 		// If chua nhap text vao the input trong form thi goi lai function "index"
 		{

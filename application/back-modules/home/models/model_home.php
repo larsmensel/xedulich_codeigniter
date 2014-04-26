@@ -26,6 +26,7 @@ class Model_home extends CI_Model{
 		 {
 		  //add all data to session
 		  $newdata = array(
+		  	'user_id'		=> $rows->idUser,
 			'user_name'		=> $rows->username,
 			'user_email'    => $rows->email,
 			'logged_in'		=> TRUE

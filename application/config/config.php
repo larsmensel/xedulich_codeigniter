@@ -15,7 +15,8 @@
 |
 */
 $config['base_url']	= 'http://localhost/xedulich_ci';
-
+define('URL_PATH', $_SERVER['DOCUMENT_ROOT'].'/xedulich_ci');
+define('URL_HTTP' , 'http://localhost/xedulich_ci');
 /*
 |--------------------------------------------------------------------------
 | Index File
