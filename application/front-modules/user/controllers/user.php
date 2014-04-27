@@ -53,20 +53,13 @@ class User extends MX_Controller {
 			$data['title']= 'Thông tin cá nhân';
 			$ss_user_email = $this->session->userdata('user_email');				
 			$data['results_user'] = $this->model_user->get_thongtin_user($ss_user_email);
-			if($this->form_validation->run('capnhat_thongtincanhan') == FALSE)
-			{
+			if($this->input->post('btn_capnhat_user')!=''){
+				$this->model_user->update_user($ss_user_email);
 				$this->template->build('thongtin_canhan',$data);
 			}
-			else
-			{
-				if($this->input->post('btn_capnhat_user')!=''){
-					$this->model_user->update_user($ss_user_name);
-					$this->template->build('thongtin_canhan',$data);
-				}
-				else{
-					$this->template->build('thongtin_canhan',$data);
-				}				
-			}
+			else{
+				$this->template->build('thongtin_canhan',$data);
+			}				
 		}
 		else{
 			$data['title']= 'Đăng nhập';
@@ -82,10 +75,10 @@ class User extends MX_Controller {
 		{
 			$data['title']= 'Đổi mật khẩu';
 			$data['error_pass'] = '';
-			$ss_user_name = $this->session->userdata('user_name');				
-			$lay_passold = $this->model_user->get_thongtin_user($ss_user_name);
+			$ss_user_email = $this->session->userdata('user_email');				
+			$lay_passold = $this->model_user->get_thongtin_user($ss_user_email);
 			foreach($lay_passold as $row_passold){
-				$pass_old = $row_passold->password;
+				$pass_old = $row_passold->PWord;
 			}	
 			
 			if($this->form_validation->run('doimatkhau') == FALSE)
@@ -96,7 +89,7 @@ class User extends MX_Controller {
 			{
 				$passold_in=md5($this->input->post('password_old'));
 				if($passold_in == $pass_old){
-					$this->model_user->change_pass($ss_user_name);
+					$this->model_user->change_pass($ss_user_email);
 					
 					
 					$newdata = array(
@@ -123,11 +116,11 @@ class User extends MX_Controller {
 	{
 		$data['error_signin']= '';
 		
-		$login_user_name=$this->input->post('user_name');
+		$login_email=$this->input->post('email');
 		$login_password=md5($this->input->post('password'));
 		//var_dump($password);exit();
 		
-		$result=$this->model_user->login($login_user_name,$login_password);
+		$result=$this->model_user->login($login_email,$login_password);
 		
 		if($this->form_validation->run('signin') == FALSE)
 		{
@@ -138,7 +131,7 @@ class User extends MX_Controller {
 			if($result) $this->thongtin_canhan();
 			else {
 				$data['title']= 'Đăng nhập';
-				$data['error_signin']= '<div class="error-form">Tên đăng nhập hoặc mật khẩu không đúng</div>';
+				$data['error_signin']= '<div class="error-form">Email hoặc mật khẩu không đúng</div>';
 				$this->template->build('signin',$data);
 			}
 		}

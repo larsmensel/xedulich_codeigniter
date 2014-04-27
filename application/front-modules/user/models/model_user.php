@@ -7,7 +7,8 @@ class Model_user extends CI_Model{
 	{
 		$data=array(
 		  'Email'=>$this->input->post('email_address'),
-		  'PWord'=>md5($this->input->post('password'))
+		  'PWord'=>md5($this->input->post('password')),
+		  'NgayDK'=>date("Y-m-d")
 		);
 		$this->db->insert('khachhang',$data);
 		$newdata = array(
@@ -22,7 +23,10 @@ class Model_user extends CI_Model{
 	{
 		$data = array(
                'DiaChi' => $this->input->post('DiaChi'),
-               'SoDT' => $this->input->post('SoDT')
+               'TenKH' => $this->input->post('HoTen'),
+			   'SoDT' => $this->input->post('SDT'),
+			   'CMND' => $this->input->post('CMND'),
+			   'NgaySinh' => $this->input->post('NgaySinh')
         		);				
 
 		$this->db->where('TenKH', $ss_user_name);
@@ -31,6 +35,7 @@ class Model_user extends CI_Model{
 					'thongbaokq' => '<div class="error-form">Cập nhật thành công</div>'
 				);
 		$this->session->set_userdata($newdata);
+		redirect('user/thongtin_canhan');
 
 	}
 	
@@ -54,9 +59,9 @@ class Model_user extends CI_Model{
 	
 		
 	
-	public function login($username,$password)
+	public function login($login_email,$password)
 	{
-		$this->db->where("TenKH",$username);
+		$this->db->where("Email",$login_email);
 		$this->db->where("PWord",$password);
 		
 		$query=$this->db->get("khachhang");
@@ -66,9 +71,8 @@ class Model_user extends CI_Model{
 		 {
 		  //add all data to session
 		  $newdata = array(
-			'user_name'		=> $rows->username,
-			'user_email'    => $rows->email,
-			'logged_in'		=> TRUE
+			'user_email'	=>	$this->input->post('email_address'),
+			'logged_in'		=> 	TRUE
 		  );
 		 }
 		 $this->session->set_userdata($newdata);

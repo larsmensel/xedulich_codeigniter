@@ -15,9 +15,9 @@ $this->banner->index();
 		<?php echo form_open('user/dangnhap'); ?>
         
         
-        <div><h5>Username</h5>
-        <input type="text" name="user_name" value="<?php echo set_value('user_name'); ?>" size="50" />
-        <?php echo form_error('user_name'); ?>
+        <div><h5>Email</h5>
+        <input type="text" name="email" value="<?php echo set_value('email'); ?>" size="50" />
+        <?php echo form_error('email'); ?>
         <?php echo $error_signin; ?>
         </div>
         

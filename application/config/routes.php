@@ -43,7 +43,8 @@ $route['404_override'] = '';
 $route['xe_category/(:any)'] = "xe_category/index";
 $route['xe_detail/(:any)'] = "xe_detail/index";
 $route['tintuc/page/(:any)'] = "tintuc/index";
-
+$route['banggia/(:any)'] = "banggia/index";
+$route['tim_xe/(:any)'] = "tim_xe/index";
 
 
 

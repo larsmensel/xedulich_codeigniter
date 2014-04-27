@@ -77,6 +77,57 @@ class Giohang extends MX_Controller {
 		}
     }
 	
+	public function sendMail()
+	{
+		
+		/****************************************
+			Bat hàm extension=php_openssl.dll trong file php extensions			
+			http://ellislab.com/codeigniter/user-guide/libraries/email.html
+		****************************************/
+
+		$this->load->library('email');
+		$this->email->clear();	
+		
+		$config['protocol'] = "smtp";
+		$config['smtp_host'] = "ssl://smtp.gmail.com";
+		$config['smtp_port'] = "465";
+		$config['smtp_user'] = "web.xedulich@gmail.com"; 
+		$config['smtp_pass'] = "xedulich@123";
+		$config['mailtype'] = "html";
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
+		$config['newline'] = "\r\n";
+		
+		$this->email->initialize($config);
+		$cart = $this->cart->contents();
+		//var_dump($cart);exit();
+		foreach($cart as $item){	
+			$options = $this->cart->product_options($item['rowid']);				
+			$send_email = $options['kh_email'];
+			$send_name = $options['kh_name'];
+		}
+		$send_subject = 'Đặt xe thành công';
+		$send_message = "'Mã đơn hàng của bạn là: ".$this->session->userdata('MaDH')."'";		
+		
+		$this->email->from($send_email, $send_name);
+		$list = array('thanhthanhspk36@gmail.com','kimthinh1211@gmail.com');
+		$this->email->to($list);
+		$this->email->reply_to($send_email, $send_name);
+		$this->email->subject($send_subject);
+		$this->email->message($send_message);		
+		
+		if($this->email->send())
+		{
+			$newdata = array('thongbaokq' => '<div class="error-form">Email đã được gửi thành công</div>');
+			$this->session->set_userdata($newdata);
+		}
+		else
+		{
+			$newdata = array('thongbaokq' => '<div class="error-form">Có lỗi xảy ra trong quá trình gửi mail</div>');
+			$this->session->set_userdata($newdata);
+			//show_error($this->email->print_debugger());
+		}			
+	}
 	
 	public function datxe_thanhcong()
     {
@@ -105,6 +156,7 @@ class Giohang extends MX_Controller {
 			
 			$this->model_giohang->add_giohang($TenKH,$SDT,$Email,$TenXe,$NgayDat,$NgayThue,$SoNgay,$Tu,$Den,$TongTien,$MaDH);			
 			$this->template->build('thanhcong', $data);
+			//$this->sendMail();
 			$this->cart->destroy();
 			
 			
@@ -125,6 +177,9 @@ class Giohang extends MX_Controller {
     	
     	$this->template->build('datxe', $data);	
     }
+	
+	
+	
 	
     public function add()
     {
@@ -205,6 +260,7 @@ class Giohang extends MX_Controller {
 		print_r($this->cart->contents());
 	}
 
+	
 
 	public function remove($rowid){
 		$data = array(

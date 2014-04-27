@@ -55,7 +55,7 @@ $this->banner->index();
 		});*/
     </script>
     
-    <div class="tt-detail-hinh pull-right"><img src="<?php echo base_url().'upload/'.$UrlHinh;?>" width="150" height="110" alt=""></div>
+    <div class="tt-detail-hinh pull-right"><img src="<?php echo base_url().'upload/xe/'.$UrlHinh;?>" width="150" height="110" alt=""></div>
     <div class="clear"></div>
     <div class="tt-detail-mota">
       <h2 class="tt-titleh2">Thông tin thêm</h2>

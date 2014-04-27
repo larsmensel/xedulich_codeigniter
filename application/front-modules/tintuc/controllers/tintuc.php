@@ -31,9 +31,9 @@ class Tintuc extends MX_Controller {
 		$this->load->library("pagination");
 		$config = array();
 				
-		$config["base_url"] = base_url() . "tintuc/page";
+		$config["base_url"] = base_url() . "tintuc/page/";
         $config["total_rows"] = $this->model_tintuc->count_tintuc();
-        $config["per_page"] = 2;
+        $config["per_page"] = 10;
         $config["uri_segment"] = 3;
 		$config['use_page_numbers'] = TRUE;
 		//$config['page_query_string'] = TRUE;
@@ -44,8 +44,9 @@ class Tintuc extends MX_Controller {
  
         $this->pagination->initialize($config);
  
-        //$page = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
+        //$page_num = ($this->uri->segment($config["uri_segment"])) ? $this->uri->segment($config["uri_segment"]) : 0;
 		$page_num = $this->uri->segment($config["uri_segment"], 1);
+		//var_dump($page_num);exit();
 		$page = ($page_num - 1) * $config["per_page"];
 		
         $data["results"] = $this->model_tintuc->fetch_tin($config["per_page"], $page);
@@ -54,6 +55,10 @@ class Tintuc extends MX_Controller {
         $data["phantrang"] = $this->pagination->create_links();		
 		$this->template->build('tintuc',$data);
             
+	}
+	public function page()
+	{
+		redirect('tintuc/page/1');
 	}
 	public function detail()
 	{

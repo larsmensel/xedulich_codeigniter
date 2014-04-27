@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Header extends MX_Controller {
+class Tuyendung extends MX_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,18 +20,15 @@ class Header extends MX_Controller {
 	 */
     public function __construct() {
         parent::__construct();
-		$this->load->helper(array('form', 'url'));
         
     }
 	public function index()
 	{
-           $this->load->view('header');
+            
+			$data['title'] = 'Thông tin tuyển dụng';
+           $this->template->build('tuyendung', $data);
            
-	}
-	
-	public function test()
-	{
-		echo '111111';
+           
 	}
         
 }

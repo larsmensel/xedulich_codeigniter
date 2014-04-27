@@ -5,14 +5,14 @@
     <li> <a class="xe-cuoi" href="<?php echo base_url(); ?>xe_category/3">Xe cưới</a></li>
   </ul>
   <ul class="tt-menu-metro-2">
-    <li> <a class="tuyen-duong" href="">Tuyến đường</a></li>
-    <li> <a class="bang-gia" href="#">Bảng giá</a></li>
-    <li> <a class="gio-hang" href="#">Giỏ hàng</a></li>
+    <li> <a class="tuyen-duong" href="<?php echo base_url(); ?>tuyendung">Tuyển dụng</a></li>
+    <li> <a class="bang-gia" href="<?php echo base_url(); ?>banggia">Bảng giá</a></li>
+    <li> <a class="gio-hang" href="<?php echo base_url(); ?>giohang">Giỏ hàng</a></li>
   </ul>
   <ul class="tt-menu-metro-3">
     <li> <a class="tin-tuc" href="<?php echo base_url(); ?>tintuc">Tin tức</a></li>
-    <li> <a class="lien-he" href="<?php echo base_url(); ?>lienhe/">Liên hệ</a></li>
-    <li> <a class="y-kien" href="#">Ý kiến</a></li>
+    <li> <a class="lien-he" href="<?php echo base_url(); ?>lienhe">Liên hệ</a></li>
+    <li> <a class="y-kien" href="https://www.facebook.com/paywebvn">Ý kiến</a></li>
   </ul>
 </div>
 <div class="tt-banner-slideshow">
