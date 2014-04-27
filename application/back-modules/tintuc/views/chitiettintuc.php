@@ -33,7 +33,7 @@ $(function(){
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Chi tiết tin tức</h1>
+      <h1 class="page-header">Thêm tin tức</h1>
       <?php if($kq_dangtin!=''){ ?>
       <div class="alert <?php if($kq_dangtin=='Không thành công'){echo 'alert-danger';}else{echo 'alert-success';} ?>"> <?php echo $kq_dangtin; ?> </div>
       <?php } ?>
@@ -42,7 +42,7 @@ $(function(){
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-default">
-        <div class="panel-heading"> Thêm tin tức </div>
+        <div class="panel-heading">Thêm tin tức</div>
         <div class="panel-body"> <?php echo form_open('tintuc/themchitiettintuc'); ?>
           <div class="row">
             <div class="col-lg-6">
@@ -62,9 +62,7 @@ $(function(){
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Upload Hình</label>
-                <div id="upload" ><span>
-                  <label>Upload Hình</label>
-                  <span></div>
+                <div id="upload"><label>Upload Hình</label></div>
                 <ul id="files" >
                 </ul>
                 <input type="hidden" name="images" id="images" class="fileold">

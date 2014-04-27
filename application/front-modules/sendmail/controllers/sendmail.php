@@ -54,7 +54,7 @@ class Sendmail extends MX_Controller {
 		$this->email->initialize($config);	
 		
 		$this->email->from($send_email, $send_name);
-		$list = array('nghia.tran@pinetech.vn','nghia.tran@dmmt.vn');
+		$list = array('thanhthanhspk36@gmail.com','kimthinh1211@gmail.com');
 		$this->email->to($list);
 		$this->email->reply_to($send_email, $send_name);
 		$this->email->subject($send_subject);
@@ -77,8 +77,8 @@ class Sendmail extends MX_Controller {
 	 
 	 public function sendMail_dangky($send_email,$send_name,$send_subject,$send_message)
 	{
-		/*$send_email = "loi.huynh@dmmt.vn";
-		$send_name = "nghĩa";
+		/*$send_email = "test@123gmail.vn";
+		$send_name = "test";
 		$send_subject ="tradvg";
 		$send_message ="test";*/
 		$this->email->clear();		
@@ -96,7 +96,7 @@ class Sendmail extends MX_Controller {
 		$this->email->from($send_email, $send_name);
 		$this->email->to($send_email);
 		
-		$list_bcc = array('nghia.tran@pinetech.vn','nghia.tran@dmmt.vn');
+		$list_bcc = array('thanhthanhspk36@gmail.com','kimthinh1211@gmail.com');
 		//$this->email->cc('another@another-example.com');
 		$this->email->bcc($list_bcc); 
 		

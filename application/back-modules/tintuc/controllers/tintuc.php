@@ -27,21 +27,18 @@ class Tintuc extends MX_Controller {
 		$this->form_validation->set_error_delimiters('<p class="help-block" style="color:red">', '</p>');
 		
 		
-		if($this->session->userdata('logged_in')==FALSE){
+		if(($this->session->userdata('logged_in'))==false){
 			redirect('home');
 		}
 		
     }
 	public function index()
 	{            
-		
-		
 		$data = array();				
 		//phan trang
 		$this->load->library('pagination');		
 		$config['base_url'] = base_url().'tintuc/index';
         $config["total_rows"] = $this->model_tintuc->get_total_tintuc();
-		
 		
         $config["per_page"] = 10;
 		$config['full_tag_open'] = '<ul class="pagination">';
@@ -92,9 +89,9 @@ class Tintuc extends MX_Controller {
 		$data['title']='Thêm tin';
         $data['kq_dangtin']='';
 	
-		$this->form_validation->set_rules('tentin', 'Tiêu đề tin', 'required');
-		$this->form_validation->set_rules('tomtattin', 'Tóm tắt tin', 'required');
-		$this->form_validation->set_rules('noidungtin', 'Nội dung tin', 'required');	
+		$this->form_validation->set_rules('tentin', 'Tiêu đề tin', 'required|xss_clean');
+		$this->form_validation->set_rules('tomtattin', 'Tóm tắt tin', 'required|xss_clean');
+		$this->form_validation->set_rules('noidungtin', 'Nội dung tin', 'required|xss_clean');	
 		if($this->form_validation->run() == FALSE){
 			$data['kq_dangtin']='Không thành công';
 			$this->template->build('chitiettintuc', $data);
@@ -127,9 +124,10 @@ class Tintuc extends MX_Controller {
 	}
 	public function luu_capnhattintuc()
 	{
-		$this->form_validation->set_rules('tentin', 'Tiêu đề tin', 'required');
-		$this->form_validation->set_rules('tomtattin', 'Tóm tắt tin', 'required');
-		$this->form_validation->set_rules('noidungtin', 'Nội dung tin', 'required');
+		$data['title']='Cập nhật tin tức';
+		$this->form_validation->set_rules('tentin', 'Tiêu đề tin', 'required|xss_clean');
+		$this->form_validation->set_rules('tomtattin', 'Tóm tắt tin', 'required|xss_clean');
+		$this->form_validation->set_rules('noidungtin', 'Nội dung tin', 'required|xss_clean');
 		
 		if($this->form_validation->run() == FALSE){	
 			$data['kq_dangtin']='Không thành công';

@@ -52,7 +52,7 @@ $(function(){
   <div class="row">
     <div class="col-lg-12">
       <div class="panel panel-default">
-        <div class="panel-heading"> Basic Form Elements </div>
+        <div class="panel-heading">Cập nhật tin tức</div>
         <div class="panel-body"> <?php echo form_open('tintuc/luu_capnhattintuc'); ?>
           <div class="row">
             <div class="col-lg-6">
@@ -75,15 +75,13 @@ $(function(){
             <div class="col-lg-6">
               <div class="form-group">
                 <label>Upload Hình</label>
-                <div id="upload" ><span>
+                <div id="upload">
                   <label>Upload Hình</label>
-                  <span></div>
+                </div>
                 <ul id="files" >
-                  <?php 
-							if($UrlHinh==''){ ?>
+                  <?php if($UrlHinh==''){ ?>
                   <li><img src="<?php echo URL_HTTP;?>/upload/tintuc/noimage.jpg" width="150" alt=""></li>
-                  <?php }
-							else{ ?>
+                  <?php } else{ ?>
                   <li><img width="150" src="<?php echo URL_HTTP.'/upload/tintuc/'.$UrlHinh;?>" ></li>
                   <?php } ?>
                 </ul>

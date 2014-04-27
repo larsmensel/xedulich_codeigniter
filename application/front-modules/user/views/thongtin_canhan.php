@@ -14,10 +14,10 @@ $this->banner->index();
       
       <?php
       	foreach($results_user as $row_user){
-			$email = $row_user->email;
-			$HoTen = $row_user->HoTen;
+			$email = $row_user->Email;
+			$HoTen = $row_user->TenKH;
 			$DiaChi = $row_user->DiaChi;
-			$SDT = $row_user->SDT;
+			$SDT = $row_user->SoDT;
 		}
 	  ?>
       
@@ -38,28 +38,12 @@ $this->banner->index();
         <h5>Email</h5>
       	<p><?php echo $email;?></p>
       </div>
-      <div>
-        <h5>Họ và Tên</h5>
-        <input type="text" name="HoTen" value="<?php if($this->input->post('HoTen')!=''){
-			echo set_value('HoTen');
-		}else{
-			echo $HoTen;
-		}
-		?>" size="50" />
-        <?php echo form_error('HoTen'); ?> </div>
-      <div>
-        <h5>Địa chỉ</h5>
-        <input type="text" name="DiaChi" value="<?php if($this->input->post('DiaChi')!=''){
-			echo set_value('DiaChi');
-		}else{
-			echo $DiaChi;
-		}
-		?>" size="50" />
-        <?php echo form_error('DiaChi'); ?> </div>
+      
+      
       <div>
         <h5>Số điện thoại</h5>
-        <input type="text" name="SDT" value="<?php if($this->input->post('SDT')!=''){
-			echo set_value('SDT');
+        <input type="text" name="SDT" value="<?php if($this->input->post('SoDT')!=''){
+			echo set_value('SoDT');
 		}else{
 			echo $SDT;
 		}

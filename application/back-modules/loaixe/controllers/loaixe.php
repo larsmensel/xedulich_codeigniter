@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Hangxe extends MX_Controller {
+class Loaixe extends MX_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,7 +20,7 @@ class Hangxe extends MX_Controller {
 	 */
     public function __construct() {
 		parent::__construct();
-        $this->load->model('model_hangxe');		
+        $this->load->model('model_loaixe');		
 		$this->load->helper(array('form', 'url'));
 		$this->load->library('form_validation');		
 		$this->lang->load('form_validation','vietnamese');	
@@ -34,8 +34,8 @@ class Hangxe extends MX_Controller {
 	{
 		
 		$this->load->library('pagination');		
-		$config['base_url'] = base_url().'hangxe/index';
-        $config["total_rows"] = $this->model_hangxe->get_total_hangxe();
+		$config['base_url'] = base_url().'loaixe/index';
+        $config["total_rows"] = $this->model_loaixe->get_total_loaixe();
 		
         $config["per_page"] = 10;
 		$config['full_tag_open'] = '<ul class="pagination">';
@@ -63,92 +63,92 @@ class Hangxe extends MX_Controller {
 		
 		$this->pagination->initialize($config);		
 		$page = ($this->uri->segment(3)) ? ($this->uri->segment(3) - 1) * $config["per_page"] : 0;		
-		$data["results"] = $this->model_hangxe->get_list_hangxe($config["per_page"], $page);		
+		$data["results"] = $this->model_loaixe->get_list_loaixe($config["per_page"], $page);		
 		$data['pagination'] = $this->pagination->create_links(); 	
 		
 		
-		$data['title']='Quản lý hãng xe';
-        $this->template->build('hangxe', $data);           
+		$data['title']='Quản lý loại xe';
+        $this->template->build('loaixe', $data);           
 	}
-    public function chitiethangxe()
+    public function chitietloaixe()
 	{          
-        $data['title']='Quản lý hãng xe';
-		$data['kq_danghangxe']='';
-		$this->template->build('chitiethangxe', $data);
+        $data['title']='Quản lý loại xe';
+		$data['kq_dangloaixe']='';
+		$this->template->build('chitietloaixe', $data);
            
 	}
-	public function themchitiethangxe()
+	public function themchitietloaixe()
 	{     
-		$data['title']='Thêm hãng xe';
-        $data['kq_danghangxe']='';
-		$this->form_validation->set_rules('tenhangxe', 'Tên hãng xe', 'required|xss_clean');
+		$data['title']='Thêm tin';
+        $data['kq_dangloaixe']='';
+		$this->form_validation->set_rules('tenloaixe', 'Tên loại xe', 'required|xss_clean');
 		$this->form_validation->set_rules('thutu', 'Thứ tự', 'required|xss_clean|is_natural_no_zero');
 			
 		if($this->form_validation->run() == FALSE){
-			$data['kq_danghangxe']='Không thành công';
-			$this->template->build('chitiethangxe', $data);
+			$data['kq_dangloaixe']='Không thành công';
+			$this->template->build('chitietloaixe', $data);
 		}
 		else{     
-			$tenhangxe	=	$this->input->post('tenhangxe');
+			$tenloaixe	=	$this->input->post('tenloaixe');
 			$thutu		=	$this->input->post('thutu');
 			$anhien		=	$this->input->post('anhien');
 			
-			$this->model_hangxe->themchitiethangxe($tenhangxe,$thutu,$anhien);
-			$data['kq_danghangxe']='Thêm thành công';
+			$this->model_loaixe->themchitietloaixe($tenloaixe,$thutu,$anhien);
+			$data['kq_dangloaixe']='Thêm thành công';
 			
-			$this->template->build('chitiethangxe', $data);
+			$this->template->build('chitietloaixe', $data);
 		}
 	}
 	
-	public function capnhathangxe()
+	public function capnhatloaixe()
 	{       
-		$data['title']='Cập nhật hãng xe';
-		$data['kq_danghangxe']='';
+		$data['title']='Cập nhật loại xe';
+		$data['kq_dangloaixe']='';
 		$id = $this->uri->segment(3);
-		$data['results'] = $this->model_hangxe->capnhathangxe($id);	
-		$this->template->build('capnhathangxe', $data);				
+		$data['results'] = $this->model_loaixe->capnhatloaixe($id);	
+		$this->template->build('capnhatloaixe', $data);				
 	}
-	public function luu_capnhathangxe()
+	public function luu_capnhatloaixe()
 	{
-		$data['title']='Cập nhật hãng xe';
+		$data['title']='Cập nhật loại xe';
 		//echo $this->input->post('id');exit;
-		$this->form_validation->set_rules('tenhangxe', 'Tên hãng xe', 'required|xss_clean');
+		$this->form_validation->set_rules('tenloaixe', 'Tên loại xe', 'required|xss_clean');
 		$this->form_validation->set_rules('thutu', 'Thứ tự', 'required|xss_clean|is_natural_no_zero');
 		
 		if($this->form_validation->run() == FALSE){	
-			$data['kq_danghangxe']='Không thành công';
+			$data['kq_dangloaixe']='Không thành công';
 			$id		=	$this->input->post('id');
-			$data['results'] = $this->model_hangxe->capnhathangxe($id);	
+			$data['results'] = $this->model_loaixe->capnhatloaixe($id);	
 			
-			$this->template->build('capnhathangxe', $data);
+			$this->template->build('capnhatloaixe', $data);
 		}
 		else{
 			$data['kq_dangtin']='Thêm thành công';
-			$data['title']='Cập nhật hãng xe';
+			$data['title']='Cập nhật loại xe';
 			
 			
 			$id			=	$this->input->post('id');
-			$tenhangxe	=	$this->input->post('tenhangxe');
+			$tenloaixe	=	$this->input->post('tenloaixe');
 			$thutu		=	$this->input->post('thutu');
 			$anhien		=	$this->input->post('anhien');
 			
-			$this->model_hangxe->luu_capnhathangxe($id,$tenhangxe,$thutu,$anhien);
-			redirect('hangxe');
+			$this->model_loaixe->luu_capnhatloaixe($id,$tenloaixe,$thutu,$anhien);
+			redirect('loaixe');
 		}
 	}
 
-	public function xoatatcahangxe()
+	public function xoatatcaloaixe()
 	{
 		$items 	= $this->input->post('items', TRUE);
 		$path 	= URL_PATH ;		
-		$done	= ($this->model_hangxe->xoatatcahangxe($items, $path)==true) ? 1 : 0;
+		$done	= ($this->model_loaixe->xoatatcaloaixe($items, $path)==true) ? 1 : 0;
 		echo json_encode($done, true) ;  exit;
 	}
-    public function xoahangxe()
+    public function xoaloaixe()
 	{
 		$id 	= $this->input->post('id', TRUE);
 		$path 	= URL_PATH ;
-		$done 	= ($this->model_hangxe->xoahangxe($id, $path)==true) ? 1 : 0;
+		$done 	= ($this->model_loaixe->xoaloaixe($id, $path)==true) ? 1 : 0;
 		echo json_encode($done, true);  exit;
 	}    	
 	

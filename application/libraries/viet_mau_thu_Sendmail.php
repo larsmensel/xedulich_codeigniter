@@ -37,7 +37,7 @@ class Sendmail extends MX_Controller{ // nho them extends MX_Controller http://e
 		$send_message = 'Noi dung';	
 		
 		$this->email->from($send_email, $send_name);
-		$list = array('nghia.tran@pinetech.vn','nghia.tran@dmmt.vn');
+		$list = array('thanhthanhspk36@gmail.com','kimthinh1211@gmail.com');
 		$this->email->to($list);
 		$this->email->reply_to($send_email, $send_name);
 		$this->email->subject($send_subject);

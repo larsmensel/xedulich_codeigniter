@@ -46,7 +46,7 @@ class Model_tintuc extends CI_Model{
 		foreach($items as $value){
 			$data = $this->get_images_tintuc($value);
 			if(!empty($data['UrlHinh'])){
-				$file = $path ."upload/tintuc/" . $data['UrlHinh']; 
+				$file = $path ."/upload/tintuc/" . $data['UrlHinh']; 
 				@unlink($file);
 			}
 			$this->db->where('id_tin', $value);

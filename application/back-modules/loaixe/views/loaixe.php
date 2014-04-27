@@ -1,7 +1,7 @@
 <div id="page-wrapper">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Danh sách hãng xe</h1>
+      <h1 class="page-header">Danh sách loại xe</h1>
     </div>
   </div>
   <div class="row">
@@ -13,7 +13,7 @@
               <div class="row" >
                 <div class="col-sm-6" style=" height:55px;">
                   <button class="btn btn-danger" type="button" onclick='DeleteAll()'>Xóa tất cả</button>
-                  <button class="btn btn-primary" type="button" onclick='Addhangxe()'>Thêm hãng xe </button>
+                  <button class="btn btn-primary" type="button" onclick='Addloaixe()'>Thêm loại xe </button>
                 </div>
               </div>
               <?php if(!empty($results)): ?>
@@ -22,7 +22,7 @@
                   <tr role="row">
                     <th style="width: 20px;"> <input type="checkbox" id='selecctall'/>
                     </th>
-                    <th style="width: 220px;">Tên hãng xe</th>
+                    <th style="width: 220px;">Tên loại xe</th>
                     <th style="width: 100px;">Thứ Tự</th>
                     <th style="width: 90px;">Trạng thái</th>
                     <th style="width: 130px;">Action</th>
@@ -30,19 +30,19 @@
                 </thead>
                 <tbody>
                   <?php foreach($results as $key=>$info):
-								$edit = base_url() . 'hangxe/capnhathangxe/'. $info->IDHangxe;
+								$edit = base_url() . 'loaixe/capnhatloaixe/'. $info->IDLoaixe;
 							?>
                   <tr class="gradeA odd">
-                    <td><input type="checkbox" class='selected' name="selected[]" value="<?php echo $info->IDHangxe;?>"  /></td>
-                    <td><?php echo $info->TenHangxe;?></td>
+                    <td><input type="checkbox" class='selected' name="selected[]" value="<?php echo $info->IDLoaixe;?>"  /></td>
+                    <td><?php echo $info->TenLoaixe;?></td>
                     <td><?php echo $info->ThuTu;?></td>
                     <td class="center"><?php if($info->AnHien ==1){ ?>
                       <button class="btn btn-info btn-circle" type="button"><i class="fa fa-check"></i> </button>
                       <?php }else{ ?>
                       <button class="btn btn-warning btn-circle" type="button"><i class="fa fa-times"></i> </button>
                       <?php } ?></td>
-                    <td class="center"><button class="btn btn-primary" onclick="Updatehangxe('<?php echo $edit;?>')" type="button">Cập nhật</button>
-                      <button class="btn btn-danger" type="button" onclick="Deletehangxe('<?php echo $info->IDHangxe;?>')">Xóa</button></td>
+                    <td class="center"><button class="btn btn-primary" onclick="Updateloaixe('<?php echo $edit;?>')" type="button">Cập nhật</button>
+                      <button class="btn btn-danger" type="button" onclick="Deleteloaixe('<?php echo $info->IDLoaixe;?>')">Xóa</button></td>
                   </tr>
                   <?php endforeach;?>
                 </tbody>
@@ -85,7 +85,7 @@
 				items.push($(this).val());
 			});	
 			return $.ajax({
-				url: http + "hangxe/xoatatcahangxe",
+				url: http + "loaixe/xoatatcaloaixe",
 				data:{items:items},
 				type:"POST",
 				dataType:"json",
@@ -93,7 +93,7 @@
 			}).done(function(data){
 				if(data==1){
 					alert('Xóa dữ liệu thành công.');
-					window.location.href = http + 'hangxe';
+					window.location.href = http + 'loaixe';
 				}else{
 					alert('Xóa dữ liệu không thành công. Vui lòng thực hiện lại.');
 				}
@@ -102,18 +102,18 @@
 			alert('Vui lòng chọn dữ liệu để xóa.');						
 		}
 	}
-	function Addhangxe()
+	function Addloaixe()
 	{
-		window.location.href = http + 'hangxe/chitiethangxe';
+		window.location.href = http + 'loaixe/chitietloaixe';
 	}
-	function Updatehangxe(url)
+	function Updateloaixe(url)
 	{
 		window.location.href = url;
 	}
-	function Deletehangxe(id)
+	function Deleteloaixe(id)
 	{
 		return $.ajax({
-			url: http + "hangxe/xoahangxe",
+			url: http + "loaixe/xoaloaixe",
 			data:{id:id},
 			type:"POST",
 			dataType:"json",
@@ -121,7 +121,7 @@
 		}).done(function(data){
 			if(data==1){
 				alert('Xóa dữ liệu thành công.');
-				window.location.href = http + 'hangxe';
+				window.location.href = http + 'loaixe';
 			}else{
 				alert('Xóa dữ liệu không thành công. Vui lòng thực hiện lại.');
 			}

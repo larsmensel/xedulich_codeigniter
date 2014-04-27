@@ -34,7 +34,10 @@ class Home extends MX_Controller {
     }
 	public function index()
 	{
-		if($this->session->userdata('logged_in')==FALSE)
+		
+		
+		
+		if(($this->session->userdata('logged_in'))==false)
 		{
 			$data['error_signin']= '';
             $this->load->view('login',$data);
