@@ -1,0 +1,26 @@
+<table border='1'>
+  <tr>
+    <td>TenKH</td>
+    <td>SDT</td>
+    <td>Email</td>
+    <td>TenXe</td>
+    <td>NgayThue</td>
+    <td>SoNgay</td>
+    <td>Tu</td>
+    <td>Den</td>
+    <td>TongTien</td>
+    <td>TinhTrang</td>
+  </tr>
+  <tr>
+    <td>test</td>
+    <td>1234567890</td>
+    <td>test@123.vn</td>
+    <td>Corolla 1.8 CVT</td>
+    <td>26-04-2014</td>
+    <td>2</td>
+    <td>Thái Nguyên</td>
+    <td>Lai Châu</td>
+    <td>600000</td>
+    <td>0</td>
+  </tr>
+</table>
