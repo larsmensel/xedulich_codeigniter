@@ -19,7 +19,7 @@ class Model_user extends CI_Model{
 	}
 	
 	
-	public function update_user($ss_user_name)
+	public function update_user($ss_user_email)
 	{
 		$data = array(
                'DiaChi' => $this->input->post('DiaChi'),
@@ -29,7 +29,7 @@ class Model_user extends CI_Model{
 			   'NgaySinh' => $this->input->post('NgaySinh')
         		);				
 
-		$this->db->where('TenKH', $ss_user_name);
+		$this->db->where('Email', $ss_user_email);
 		$this->db->update('khachhang', $data); 
 		$newdata = array(
 					'thongbaokq' => '<div class="error-form">Cập nhật thành công</div>'
@@ -39,13 +39,13 @@ class Model_user extends CI_Model{
 
 	}
 	
-	public function change_pass($ss_user_name)
+	public function change_pass($ss_user_email)
 	{
 		$data = array(
 			   'PWord'=>md5($this->input->post('password_new'))
         		);				
 
-		$this->db->where('TenKH', $ss_user_name);
+		$this->db->where('Email', $ss_user_email);
 		$this->db->update('khachhang', $data); 
 
 	}

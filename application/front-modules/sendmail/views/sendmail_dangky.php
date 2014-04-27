@@ -22,8 +22,8 @@ p.footer { text-align: right; font-size: 11px; border-top: 1px solid #D0D0D0; li
 </head>
 <body>
 <div id="container">
-  <h1>Chúc mừng bạn đã đang ký thanh công</h1>
-  <div id="body"> <strong>Tên đăng nhập</strong> <code><?php echo $u_name; ?></code> <strong>Mật khẩu</strong> <code><?php echo $u_pass; ?></code> </div>
+  <h1>Chúc mừng bạn đã đăng ký thành công</h1>
+  <div id="body"> <strong>Email đăng nhập</strong> <code><?php echo $u_email; ?></code> <strong>Mật khẩu</strong> <code><?php echo $u_pass; ?></code> </div>
 </div>
 </body>
 </html>

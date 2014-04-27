@@ -156,7 +156,7 @@ class Giohang extends MX_Controller {
 			
 			$this->model_giohang->add_giohang($TenKH,$SDT,$Email,$TenXe,$NgayDat,$NgayThue,$SoNgay,$Tu,$Den,$TongTien,$MaDH);			
 			$this->template->build('thanhcong', $data);
-			//$this->sendMail();
+			$this->sendMail();
 			$this->cart->destroy();
 			
 			

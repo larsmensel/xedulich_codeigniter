@@ -29,7 +29,7 @@ class Model_home extends CI_Model{
 		  	'user_id'		=> $rows->idUser,
 			'user_name'		=> $rows->username,
 			'user_email'    => $rows->email,
-			'logged_in'		=> TRUE
+			'admin_logged_in'		=> TRUE
 		  );
 		 }
 		 $this->session->set_userdata($newdata);

@@ -28,8 +28,8 @@ class Tim_xe extends MX_Controller {
 		if($this->input->post('search')){
 			$keyword = $this->input->post('search');
 		}
-		if ($this->uri->segment(2) === FALSE){$keyword = 0;}
-		else{$keyword = $this->uri->segment(2);}
+		if (($this->uri->segment(2)) == TRUE){$keyword = $this->uri->segment(2);}
+		
 		//echo $keyword;exit;
 		
 	    //$data['title'] = 'Cho Thuê Xe Du Lịch';

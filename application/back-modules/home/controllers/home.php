@@ -37,7 +37,7 @@ class Home extends MX_Controller {
 		
 		
 		
-		if(($this->session->userdata('logged_in'))==false)
+		if(($this->session->userdata('admin_logged_in'))==false)
 		{
 			$data['error_signin']= '';
             $this->load->view('login',$data);
@@ -74,7 +74,7 @@ class Home extends MX_Controller {
 		$login_password=md5($this->input->post('password'));
 		//var_dump($password);exit();
 
-		if($this->form_validation->run('signin') == FALSE) //kiem tra xem co nhap du lieu k, chua xet dung sai so voi database
+		if($this->form_validation->run('admin_signin') == FALSE) //kiem tra xem co nhap du lieu k, chua xet dung sai so voi database
 		// If chua nhap text vao the input trong form thi goi lai function "index"
 		{
 			$this->index();

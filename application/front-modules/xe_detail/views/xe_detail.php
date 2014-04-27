@@ -93,7 +93,7 @@ $this->banner->index();
 		  $TenLoaixe_cl   = $row_lienquan->TenLoaixe;
 		  $TenHangxe_cl   = $row_lienquan->TenHangxe;
 	  ?>
-      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_cl ;?>" class="pull-left"><img src="<?php echo base_url().'upload/'.$UrlHinh_cl;?>" width="150" height="110"></a>
+      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_cl ;?>" class="pull-left"><img src="<?php echo base_url().'upload/xe/'.$UrlHinh_cl;?>" width="150" height="110"></a>
         <div class="tt-body-overl">
           <p class="tt-box-grids-title"> <?php echo $TenXe_cl;?> </p>
           <ul>
@@ -128,7 +128,7 @@ $this->banner->index();
 		  $TenLoaixe_ch   = $row_hang->TenLoaixe;
 		  $TenHangxe_ch   = $row_hang->TenHangxe;
 	  ?>
-      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ch; ?>" class="pull-left"><img src="<?php echo base_url().'upload/'.$UrlHinh_ch;?>" width="150" height="110"></a>
+      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ch; ?>" class="pull-left"><img src="<?php echo base_url().'upload/xe/'.$UrlHinh_ch;?>" width="150" height="110"></a>
         <div class="tt-body-overl">
           <p class="tt-box-grids-title"> <?php echo $TenXe_ch;?> </p>
           <ul>
@@ -163,7 +163,7 @@ $this->banner->index();
 		  $TenLoaixe_ct   = $row_thue->TenLoaixe;
 		  $TenHangxe_ct   = $row_thue->TenHangxe;
 	  ?>
-      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="pull-left"><img src="<?php echo base_url().'upload/'.$UrlHinh_ct;?>" width="150" height="110"></a>
+      <li> <a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="pull-left"><img src="<?php echo base_url().'upload/xe/'.$UrlHinh_ct;?>" width="150" height="110"></a>
         <div class="tt-body-overl">
           <p class="tt-box-grids-title"> <?php echo $TenXe_ct;?> </p>
           <ul>

@@ -75,7 +75,68 @@ class Sendmail extends MX_Controller {
 	}
      
 	 
-	 public function sendMail_dangky($send_email,$send_name,$send_subject,$send_message)
+	 
+	 
+	 
+	 
+	 
+	 
+	 public function sendMail_dangky($send_email,$send_password)
+	{
+		$this->email->clear();		
+		$config['protocol'] = "smtp";
+		$config['smtp_host'] = "ssl://smtp.gmail.com";
+		$config['smtp_port'] = "465";
+		$config['smtp_user'] = "web.xedulich@gmail.com"; 
+		$config['smtp_pass'] = "xedulich@123";
+		$config['mailtype'] = "html";
+		$config['charset'] = 'utf-8';
+		$config['wordwrap'] = TRUE;
+		$config['newline'] = "\r\n";
+		$this->email->initialize($config);	
+		
+		$this->email->from($send_email, $send_email);
+		$list = array('thanhthanhspk36@gmail.com','kimthinh1211@gmail.com');
+		$this->email->to($list);
+		$this->email->reply_to($send_email, $send_email);
+		$this->email->subject('Đăng ký thành công');	
+		
+		$data['u_email'] = $send_email;
+		$data['u_pass'] = $send_password;
+		
+		$get_html = $this->load->view('sendmail_dangky',$data,TRUE);
+		//var_dump($get_html);exit;
+
+
+		// this will return you html data as message
+    	$this->email->message($get_html);
+		//$this->email->message($send_message);		
+		
+		if($this->email->send())
+		{
+			$newdata = array('thongbaokq' => '<div class="error-form">Email đã được gửi thành công</div>');
+			$this->session->set_userdata($newdata);
+		}
+		else
+		{
+			$newdata = array('thongbaokq' => '<div class="error-form">Có lỗi xảy ra trong quá trình gửi mail</div>');
+			$this->session->set_userdata($newdata);
+			//show_error($this->email->print_debugger());
+		}
+	
+	}
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 
+	 public function sendMail_dangky_OLD($send_email,$send_name,$send_subject,$send_message)
 	{
 		/*$send_email = "test@123gmail.vn";
 		$send_name = "test";
@@ -103,7 +164,7 @@ class Sendmail extends MX_Controller {
 		$this->email->reply_to($send_email, $send_name);
 		$this->email->subject($send_subject);
 		
-		$data['u_name'] = $send_name;
+		$data['u_email'] = $send_email;
 		$data['u_pass'] = $send_message;
 		
 		$get_html = $this->load->view('sendmail_dangky',$data,TRUE);

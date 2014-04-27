@@ -66,7 +66,7 @@ class Lienhe extends MX_Controller {
 						$send_message = $this->input->post('noidung');
 						
 						$this->load->module('sendmail');
-						$this->load->sendmail->sendMail_dangky($send_email,$send_name,$send_subject,$send_message);					
+						$this->load->sendmail->sendMail_lienhe($send_email,$send_name,$send_subject,$send_message);					
 						
 						// xóa hình captcha cũ
 						$this->load->captcha->deleteImage();

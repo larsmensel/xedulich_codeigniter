@@ -14,7 +14,7 @@ $config = array(
 					array(
 							'field' => 'email_address',
 							'label' => 'Email',
-							'rules' => 'required|valid_email|xss_clean|is_unique[user.email]' //user->database | email->field
+							'rules' => 'required|valid_email|xss_clean|is_unique[khachhang.Email]' //user->database | email->field
 						 ),
 					array(
 							'field' => 'captcha',
@@ -24,14 +24,26 @@ $config = array(
 					),
 	'signin' => array(
 					array(
-							'field' => 'user_name',
-							'label' => 'Tên đăng nhập',
-							'rules' => 'trim|min_length[4]|required|xss_clean'
+							'field' => 'email',
+							'label' => 'Email',
+							'rules' => 'valid_email|required|xss_clean'
 						 ),
 					array(
 							'field' => 'password',
 							'label' => 'Mật khẩu',
 							'rules' => 'required'
+						 )
+					),	
+	'admin_signin' => array(
+					array(
+							'field' => 'user_name',
+							'label' => 'User Name',
+							'rules' => 'required|xss_clean'
+						 ),
+					array(
+							'field' => 'password',
+							'label' => 'Mật khẩu',
+							'rules' => 'required|xss_clean'
 						 )
 					),	
 	'capnhat_thongtincanhan' => array(

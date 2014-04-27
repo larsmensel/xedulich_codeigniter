@@ -26,7 +26,7 @@ class Loaixe extends MX_Controller {
 		$this->lang->load('form_validation','vietnamese');	
 		$this->form_validation->set_error_delimiters('<p class="help-block" style="color:red">', '</p>');
 		
-		if(($this->session->userdata('logged_in'))==false){
+		if(($this->session->userdata('admin_logged_in'))==false){
 			redirect('home');
 		}   
     }

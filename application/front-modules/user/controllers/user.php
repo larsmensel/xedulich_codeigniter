@@ -170,7 +170,16 @@ class User extends MX_Controller {
 				$captcha = $this->input->post('captcha');
 				$this->session->set_userdata('loi_captcha', '');				
 				
-				if(($this->load->captcha->kiemtra($captcha))){								
+				if(($this->load->captcha->kiemtra($captcha))){		
+				
+				
+						//gửi Mail
+						$send_email = $this->input->post('email_address');
+						$send_password = $this->input->post('password');
+						
+						$this->load->module('sendmail');
+						$this->load->sendmail->sendMail_dangky($send_email,$send_password);		
+										
 						
 						// xóa hình captcha cũ
 						$this->load->captcha->deleteImage();
@@ -193,55 +202,6 @@ class User extends MX_Controller {
 		}
 	}
 	
-	
-	
-	public function sendMail()
-	{
-		
-		/****************************************
-			Bat hàm extension=php_openssl.dll trong file php extensions			
-			http://ellislab.com/codeigniter/user-guide/libraries/email.html
-		****************************************/
-
-		$this->load->library('email');
-		$this->email->clear();	
-		
-		$config['protocol'] = "smtp";
-		$config['smtp_host'] = "ssl://smtp.gmail.com";
-		$config['smtp_port'] = "465";
-		$config['smtp_user'] = "web.xedulich@gmail.com"; 
-		$config['smtp_pass'] = "xedulich@123";
-		$config['mailtype'] = "html";
-		$config['charset'] = 'utf-8';
-		$config['wordwrap'] = TRUE;
-		$config['newline'] = "\r\n";
-		
-		$this->email->initialize($config);
-		
-		$send_email = $this->input->post('email');
-		$send_name = $this->input->post('name');
-		$send_subject = $this->input->post('tieude');
-		$send_message = $this->input->post('noidung');		
-		
-		$this->email->from($send_email, $send_name);
-		$list = array('thanhthanhspk36@gmail.com','kimthinh1211@gmail.com');
-		$this->email->to($list);
-		$this->email->reply_to($send_email, $send_name);
-		$this->email->subject($send_subject);
-		$this->email->message($send_message);		
-		
-		if($this->email->send())
-		{
-			$newdata = array('thongbaokq' => '<div class="error-form">Email đã được gửi thành công</div>');
-			$this->session->set_userdata($newdata);
-		}
-		else
-		{
-			$newdata = array('thongbaokq' => '<div class="error-form">Có lỗi xảy ra trong quá trình gửi mail</div>');
-			$this->session->set_userdata($newdata);
-			//show_error($this->email->print_debugger());
-		}			
-	}
 		
 	
 	public function thoat()
