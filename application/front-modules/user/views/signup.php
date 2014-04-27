@@ -14,11 +14,11 @@ $this->banner->index();
     	<?php //echo validation_errors(); ?>
     
 		<?php echo form_open('user/dangky'); ?>
-        
-        <div><h5>Username</h5>
-        <input type="text" name="user_name" value="<?php echo set_value('user_name'); ?>" size="50" />
-        <?php echo form_error('user_name'); ?>
+        <div><h5>Email Address</h5>
+        <input type="text" name="email_address" value="<?php echo set_value('email_address'); ?>" size="50" />
+        <?php echo form_error('email_address'); ?>
         </div>
+        
         
         <div><h5>Password</h5>
         <input type="password" name="password" value="<?php echo set_value('password'); ?>" autocomplete="off" size="50" />
@@ -30,10 +30,7 @@ $this->banner->index();
         <?php echo form_error('passconf'); ?>
         </div>
         
-        <div><h5>Email Address</h5>
-        <input type="text" name="email_address" value="<?php echo set_value('email_address'); ?>" size="50" />
-        <?php echo form_error('email_address'); ?>
-        </div>
+        
         <div>
           <h5>Mã xác nhận</h5>
           <input type="text" name="captcha" value="" autocomplete="off"/> <?php echo $image_captcha;?>

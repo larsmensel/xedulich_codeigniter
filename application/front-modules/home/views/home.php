@@ -15,7 +15,7 @@ $this->banner->index();
     <h2 class="tt-box-style-tt"><a href="<?php echo base_url().'xe_category/'.$value['IDThue']; ?>"><?php echo $value['TenThue'];?></a></h2>
     <ul class="tt-box-grids">
       <?php foreach($value['sub'] as $key=>$info):?>
-      <li> <a href="<?php echo base_url().'xe_detail/'.$info['IDchitietxe']; ?>" class="pull-left"><img src="<?php echo base_url().'upload/'.$info['UrlHinh'];?>" width="150" height="110"></a>
+      <li> <a href="<?php echo base_url().'xe_detail/'.$info['IDchitietxe']; ?>" class="pull-left"><img src="<?php echo base_url().'upload/xe/'.$info['UrlHinh'];?>" width="150" height="110"></a>
         <div class="tt-body-overl">
           <p class="tt-box-grids-title"> <?php echo $info['TenXe'];?></p>
           <ul>

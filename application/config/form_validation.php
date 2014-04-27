@@ -2,11 +2,6 @@
 $config = array(
 	'signup' => array(
 					array(
-							'field' => 'user_name',
-							'label' => 'Tên đăng nhập',
-							'rules' => 'trim|min_length[4]|required|xss_clean|is_unique[user.username]' //user->database | username->field
-						 ),
-					array(
 							'field' => 'password',
 							'label' => 'Mật khẩu',
 							'rules' => 'required'
@@ -19,7 +14,7 @@ $config = array(
 					array(
 							'field' => 'email_address',
 							'label' => 'Email',
-							'rules' => 'required|valid_email|xss_clean|is_unique[user.email]'
+							'rules' => 'required|valid_email|xss_clean|is_unique[user.email]' //user->database | email->field
 						 ),
 					array(
 							'field' => 'captcha',

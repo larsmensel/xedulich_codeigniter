@@ -6,13 +6,11 @@ class Model_user extends CI_Model{
 	public function add_user()
 	{
 		$data=array(
-		  'TenKH'=>$this->input->post('user_name'),
 		  'Email'=>$this->input->post('email_address'),
 		  'PWord'=>md5($this->input->post('password'))
 		);
 		$this->db->insert('khachhang',$data);
 		$newdata = array(
-			'user_name'		=>$this->input->post('user_name'),
 			'user_email'	=>$this->input->post('email_address'),
 			'logged_in'		=> TRUE
 		);
@@ -48,9 +46,9 @@ class Model_user extends CI_Model{
 	}
 	
 	
-	public function get_thongtin_user($ss_user_name)
+	public function get_thongtin_user($ss_user_email)
 	{
-		$query = $this->db->get_where('khachhang', array('TenKH' => $ss_user_name));
+		$query = $this->db->get_where('khachhang', array('Email' => $ss_user_email));
 		return  $query->result();
 	}
 	

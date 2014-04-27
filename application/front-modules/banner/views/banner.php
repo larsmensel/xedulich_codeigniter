@@ -5,9 +5,9 @@
     <li> <a class="xe-cuoi" href="<?php echo base_url(); ?>xe_category/3">Xe cưới</a></li>
   </ul>
   <ul class="tt-menu-metro-2">
-    <li> <a class="tuyen-duong" href="#">Tuyến đường</a></li>
+    <li> <a class="tuyen-duong" href="">Tuyến đường</a></li>
     <li> <a class="bang-gia" href="#">Bảng giá</a></li>
-    <li> <a class="dat-xe" href="#">Đặt xe</a></li>
+    <li> <a class="gio-hang" href="#">Giỏ hàng</a></li>
   </ul>
   <ul class="tt-menu-metro-3">
     <li> <a class="tin-tuc" href="<?php echo base_url(); ?>tintuc">Tin tức</a></li>

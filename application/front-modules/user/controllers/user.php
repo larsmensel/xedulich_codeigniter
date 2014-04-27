@@ -36,7 +36,7 @@ class User extends MX_Controller {
 	{
 		/*$session_id = $this->session->userdata('user_name');
 		echo $session_id;*/
-		if(($this->session->userdata('user_name')!=""))
+		if(($this->session->userdata('logged_in'))==true)
 		{
 			$this->thongtin_canhan();
 		}
@@ -48,11 +48,11 @@ class User extends MX_Controller {
 	}
 	public function thongtin_canhan()
 	{		
-		if(($this->session->userdata('user_name')!=""))
+		if(($this->session->userdata('logged_in'))==true)
 		{
 			$data['title']= 'Thông tin cá nhân';
-			$ss_user_name = $this->session->userdata('user_name');				
-			$data['results_user'] = $this->model_user->get_thongtin_user($ss_user_name);
+			$ss_user_email = $this->session->userdata('user_email');				
+			$data['results_user'] = $this->model_user->get_thongtin_user($ss_user_email);
 			if($this->form_validation->run('capnhat_thongtincanhan') == FALSE)
 			{
 				$this->template->build('thongtin_canhan',$data);
@@ -78,7 +78,7 @@ class User extends MX_Controller {
 	
 	public function doimatkhau()
 	{		
-		if(($this->session->userdata('user_name')!=""))
+		if(($this->session->userdata('logged_in'))==true)
 		{
 			$data['title']= 'Đổi mật khẩu';
 			$data['error_pass'] = '';
@@ -156,7 +156,8 @@ class User extends MX_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');*/	
 		$this->load->module('captcha');	
 			
-		if(($this->session->userdata('user_name')!=""))
+	
+		if(($this->session->userdata('logged_in'))==true)
 		{
 			$this->thongtin_canhan();
 		}

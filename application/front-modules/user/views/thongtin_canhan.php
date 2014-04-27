@@ -30,10 +30,7 @@ $this->banner->index();
 		echo $thongbao;
 	  ?>
       
-      <div>
-        <h5>Username</h5>
-      	<p><?php echo $this->session->userdata('user_name');?></p>
-      </div>
+      
       <div>
         <h5>Email</h5>
       	<p><?php echo $email;?></p>

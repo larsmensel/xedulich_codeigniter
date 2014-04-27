@@ -260,7 +260,7 @@ body {
 	-webkit-box-shadow: inset 0px 1px 25px rgba(0,0,0,0.4);
 	box-shadow: inset 0px 1px 25px rgba(0,0,0,0.4);
 }
-.tt-menu-metro-2 >li a.dat-xe {
+.tt-menu-metro-2 >li a.gio-hang {
 	height: 30px;
 	width: 65px;
 	float: right;
@@ -275,7 +275,7 @@ body {
 	-moz-transition: All 0.3s ease;
 	-o-transition: All 0.3s ease;
 }
-.tt-menu-metro-2 >li a.dat-xe:hover {
+.tt-menu-metro-2 >li a.gio-hang:hover {
 	height: 95px;
 	background-position: center 55px;
 	padding-top: 15px;
