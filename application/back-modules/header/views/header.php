@@ -121,7 +121,7 @@
               </span> </div>
             <!-- /input-group --> 
           </li>
-          <li> <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a> </li>
+          <li> <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard fa-fw"></i> Admin</a> </li>
           <li> <a href="<?php echo base_url(); ?>xe"><i class="fa fa-bar-chart-o fa-fw"></i> Quản lý xe</a></li>
           <li> <a href="<?php echo base_url(); ?>loaixe"><i class="fa fa-bar-chart-o fa-fw"></i> Quản lý loại xe</a></li>
           <li> <a href="<?php echo base_url(); ?>hangxe"><i class="fa fa-bar-chart-o fa-fw"></i> Quản lý hãng xe</a></li>

@@ -25,6 +25,7 @@ class Tim_xe extends MX_Controller {
     }
 	public function index()
 	{		
+			$data["title"] = 'Tìm xe';
 		if($this->input->post('search')){
 			$keyword = $this->input->post('search');
 		}
@@ -40,6 +41,9 @@ class Tim_xe extends MX_Controller {
 				
 		$config["base_url"] = base_url() . "tim_xe/".$keyword."/page";
         $config["total_rows"] = $this->model_tim_xe->count_chitietxe_tim($keyword);
+		//var_dump($config["total_rows"]); exit();
+		if($config["total_rows"] >0)
+		{
         $config["per_page"] = 10;
         $config["uri_segment"] = 4;
 		$config['use_page_numbers'] = TRUE;
@@ -57,9 +61,12 @@ class Tim_xe extends MX_Controller {
 		
         $data["results"] = $this->model_tim_xe->fetch_chitietxe_tim($keyword,$config["per_page"], $page);
 
-		$data["title"] = 'Tìm xe';
+		
         $data["phantrang"] = $this->pagination->create_links();
 		$this->template->build('tim_xe',$data);
+		}
+		else 
+		$this->template->build('khong_tim_thay',$data);
             
 	}
  

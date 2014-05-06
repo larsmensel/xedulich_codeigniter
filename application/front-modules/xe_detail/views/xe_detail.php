@@ -149,11 +149,12 @@ $this->banner->index();
     </ul>
   </div>
   <div class="clear" style="margin-bottom:10px;"></div>
+  <?php if(!empty($results_xecung_loaithue)){ ?>
   <div class="tt-box-style">
     <h2 class="tt-box-style-tt">Cùng <?php echo mb_strtolower($results_tenloaithue); ?></h2>
     <ul class="tt-box-grids">
       <?php 
-	  if(!empty($results_xecung_loaithue)){ //nếu có dữ liệu liên quan thì hiện ra kết quả
+	   //nếu có dữ liệu liên quan thì hiện ra kết quả
 	  foreach($results_xecung_loaithue as $row_thue){
 		  $IDchitietxe_ct = $row_thue->IDchitietxe;
 		  $TenXe_ct       = $row_thue->TenXe;
@@ -175,15 +176,11 @@ $this->banner->index();
           <p class="tt-txt-right"><a href="<?php echo base_url().'xe_detail/'.$IDchitietxe_ct; ?>" class="tt-btn-viewmore"> Chi tiết</a> </p>
         </div>
       </li>
-      <?php } 
-	  }
-	  else{
-	  	echo 'Không có dữ liệu';
-	  }
-	  ?>
+     <?php } ?> 
     </ul>
   </div>
   <div class="clear" style="margin-bottom:10px;"></div>
+  <?php } ?>
 </div>
 <?php
 $this->load->module('right');

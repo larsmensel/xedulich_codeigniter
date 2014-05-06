@@ -129,7 +129,7 @@ $assign_to_config['template_path'] = 'templates/';
 $assign_to_config['layout_path'] = 'admin/';
 
 //custom config overwritten the original one by Bhuban <bhuban@gmail.com>;
-$assign_to_config['base_url']	= 'http://localhost/xedulich_ci/admin';
+$assign_to_config['base_url']	= 'http://lthanhthanhlt.byethost17.com/admin';
 //$assign_to_config['base_theme']	= 'http://localhost/xedulich_ci';
 
 $assign_to_config['index_page'] = '';
